@@ -1,0 +1,708 @@
+Produce||农产品
+Fresh Vegetables||新鲜蔬菜
+Mushrooms & Truffles||蘑菇
+Beverages||饮料
+Coffee, Tea & Cocoa||咖啡、茶
+Coffee||咖啡
+Cocoa||可可
+Sauces, Gravies & Marinades||酱汁、肉汁
+Sauces||调味汁
+Asian||亚洲
+Cooking & Baking||烹饪
+Frosting, Icing & Decorations||糖霜，糖衣
+Sprinkles & Glitters||Sprinkles
+Candy & Chocolate||糖果
+Hard Candy & Lollipops||硬糖
+Hard Candy||硬糖
+Tea||茶
+Bottled Beverages, Water & Drink Mixes||瓶装饮料、水
+Meal Replacement & Protein Drinks||代餐
+Cake & Cupcake Toppers||蛋糕
+Icing Decorations||糖霜装饰
+Breakfast Foods||早餐食品
+Breakfast & Cereal Bars||早餐
+Energy & Nutritional||能源
+Non-Dairy Coffee Creamers||非乳制品咖啡奶精
+Syrups, Sugars & Sweeteners||糖浆、糖
+Sugars||糖类
+Snack Foods||休闲食品
+Cookies||曲奇
+Wafers||晶圆
+Frostings & Icings||糖霜
+Cereals||谷物
+Oatmeal||燕麦片
+Herbs, Spices & Seasonings||草药、香料
+Mixed Spices & Seasonings||混合香料
+Italian Seasoning||意大利调味料
+Single Herbs & Spices||单一药材
+Chili Powder||辣椒粉
+Meat Seasoning||肉类调料
+Dried Fruits & Vegetables||干果
+Dried Vegetables||干蔬菜
+Condiments & Salad Dressings||调味品
+Mustard||芥末
+Yellow Mustard||黄芥末
+Cooking Oils, Vinegars & Sprays||食用油、醋
+Vinegars||醋
+Oils||油类
+Nuts & Seeds||坚果
+Peanuts||花生
+Dried Beans, Grains & Rice||干豆、谷物
+Grains & Rice||谷物
+White||白色
+Chinese Five Spice||中国五香粉
+Dijon Mustard||第戎芥末酱
+Wasabi Powder||山葵粉
+Beans||豆类
+Black||黑色
+Pasta & Noodles||意大利面
+Pasta||邮件
+Fettuccine||通心粉
+Greek Seasoning||希腊调味料
+Pappardelle||Pappardelle
+Baking Mixes||烘焙混合料
+Cakes||蛋糕
+Chocolate Chip||巧克力脆片
+Pudding & Gelatin||布丁
+Pudding||布丁
+Powdered Drink Mixes & Flavorings||粉状混合饮料
+Dairy, Cheese & Eggs||乳制品、奶酪
+Milk & Cream||牛奶
+Eggnog||蛋酒
+Gelatin||明胶
+Muffins||松饼
+Biscuits||饼干
+Pancakes & Waffles||煎饼
+Barbecue||烧烤
+Flavor Syrups||香味糖浆
+Soy Nuts||我是疯子
+Simple Syrup||简单糖浆
+Fresh Flowers & Live Indoor Plants||鲜花
+Live Indoor Plants||室内活植物
+Bonsai||盆景
+Almonds||杏仁
+Molasses||糖蜜
+Salsas, Dips & Spreads||莎莎酱，蘸酱
+Salsas||沙司
+Italian||意大利语
+Jelly Beans & Gummy Candy||果冻豆
+Gummy Candy||软糖
+Thyme||百里香
+Jelly Beans||果冻豆
+Soft Drinks||软饮料
+Meat & Seafood||肉类
+Seafood||海鲜
+Fresh Seafood||新鲜海鲜
+Potatoes & Yams||马铃薯
+Chicken||鸡肉
+Breasts||乳房
+Canned, Jarred & Packaged Foods||罐头、坛子
+Vegetables||蔬菜
+Potatoes||马铃薯
+Taffy||塔菲
+Suckers & Lollipops||吸盘
+Cajun Seasoning||卡真调味料
+Lima||利马
+Sausages||香肠
+Frozen||冷冻
+Meals & Entrees||膳食
+Chicken & Turkey||鸡肉
+Ginger||姜
+Packaged Meals & Side Dishes||包装餐
+Mexican Dishes||墨西哥菜
+Fresh Fruits||新鲜水果
+Citrus Fruits||柑橘类水果
+Mexican Seasoning||墨西哥调味料
+Pecans||山核桃
+Pepper & Peppercorns||胡椒粉
+Ground Pepper||胡椒粉
+Milk Substitutes||牛奶替代品
+Coconut Milk||椰奶
+Salt & Salt Substitutes||盐
+Seasoned Salt||调味盐
+Sweet Basil Leaf||甜罗勒叶
+Cold Cereals||冷谷物
+Spanish & Mexican||西班牙语
+Dips & Spreads||蘸酱
+Condensed & Powdered Milk||浓缩
+Condensed||浓缩
+Juices||果汁
+Corn||玉米
+Soups, Stocks & Broths||汤、高汤
+Bouillon||布永
+Beef||牛肉
+Flours & Meals||面粉
+Pistachios||开心果
+Hazelnuts||榛子
+Quinoa||藜麦
+Olives, Pickles & Relishes||橄榄、腌菜
+Relishes||调味品
+Pickle Relishes||泡菜酱
+Barbecue Seasoning||烧烤调料
+Olives||橄榄
+Stuffed Olives||酿橄榄
+Hearts of Palm||棕榈之心
+Dusting Powders||撒粉
+Vanilla Beans||香草豆
+Fruits||水果
+Papayas||木瓜
+Chili Mix||辣椒粉
+Dried Fruits||干果
+Cherries||樱桃
+Apricots||杏子
+Fenugreek||胡芦巴
+Indian Dishes||印度菜
+Flax Seed||亚麻籽
+Leaveners & Yeasts||酵母
+Baker's Yeast||面包酵母
+Licorice||甘草
+Energy Drinks||能量饮料
+Honey||蜂蜜
+Breads||面包
+Barley Flour||大麦面粉
+Pumpkin Seeds||南瓜籽
+Broths||肉汤
+Vegetable||蔬菜
+Popcorn Salt||爆米花盐
+Active Dry Yeasts||活性干酵母
+Poultry Seasoning||家禽调味料
+Cloves||丁香
+Cumin||小茴香
+Turmeric||姜黄
+Cinnamon||肉桂
+Garlic||大蒜
+Sage Leaf||鼠尾草叶
+Sea Salt||海盐
+Popcorn||爆米花
+Unpopped||未弹出
+Meat, Poultry & Seafood||肉类、家禽
+Asian Dishes||亚洲菜肴
+Wheat Flours & Meals||小麦粉
+Cashews||腰果
+Snails||蜗牛
+Truffles||松露
+Beets||甜菜
+Chocolate & Fudge||巧克力
+Chocolate Truffles||松露巧克力
+Non-Stick Cooking Oil Sprays||不粘烹饪油喷雾器
+Sugar Substitutes||糖替代品
+Stevia||甜菊糖
+Popped||弹出
+Macaroni & Cheese||通心粉
+Lasagna||千层面
+Breadcrumbs & Seasoned Coatings||面包屑
+Seasoned Coatings||调味涂料
+Fresh Cut Flowers||鲜切花
+Mixed Bouquets||混合花束
+Saccharine||糖
+Wild||狂野
+Peppercorns||胡椒粒
+Parsley||欧芹
+Candied & Chocolate-covered Snacks||蜜饯
+Candied & Chocolate-coated Nuts||蜜饯
+Tarragon||龙嵩
+Marjoram||甘牛
+Onion||洋葱
+Oregano||牛至
+Cardamom Seed||小豆蔻籽
+Rosemary||迷迭香
+Coriander||芫荽
+Chives||韭菜
+Dill||莳萝
+Curry Powder||咖喱粉
+Saffron||藏红花
+Gourmet Rubs||美食擦
+Garam Masala||加拉姆玛萨拉
+Flavored Salt||调味盐
+Baking Powder||发酵粉
+Assortments & Samplers||分类
+Shortbread||酥饼
+Bubble Tea Tapioca Pearls||泡沫红茶木薯珍珠
+Chips & Crisps||薯片
+Potato||马铃薯
+Rice Dishes||米饭菜肴
+Rice Flour||米粉
+Fennel Seed||茴香籽
+Coffee Substitutes||咖啡替代品
+Caviars & Roes||鱼子酱
+Salad Dressings||沙拉酱
+Ranch||牧场
+Caesar||凯撒
+Xylitol||木糖醇
+Dessert Syrups & Sauces||甜点糖浆
+Chocolate||巧克力
+Crackers||饼干
+Saltines||咸饼干
+Spaghetti||意大利面
+Thousand Island||千岛湖
+Mulling Spice||莫林香料
+Traditional & International Sweets||传统
+Halva||哈尔瓦
+Noodles||面条
+Soba||荞麦面
+Pickles||泡菜
+Sweet Pickles||甜腌菜
+Mixed Nuts||混合坚果
+Nut Clusters||坚果簇
+Beans & Peas||豆类
+Refried Beans||干豆
+Black Beans||黑豆
+Snickerdoodles||小饼干
+Peanut Butter||花生酱
+Fruit||水果
+Sports Drinks||运动饮料
+Cocktail Mixers||鸡尾酒调料
+Cheese||奶酪
+Cheddar||切达
+Baking Soda||小苏打
+Deli||熟食
+Packaged & Sliced Deli Meats||包装
+Packaged Cured & Deli Meats||包装固化
+Couscous||库斯库斯
+Butter||黄油
+Capellini||卡佩里尼
+Brittle, Caramel & Toffee||焦糖脆饼
+Caramels||焦糖
+Snack Cakes & Pastries||小吃蛋糕
+Snack Pies||小吃派
+Vinaigrette||油醋汁
+Breads & Bakery||面包
+Packaged Breads||包装面包
+Rolls & Buns||轧辊
+Baked Beans||烤豆
+Potatoes & Stuffings||马铃薯
+Macadamia Nuts||澳洲坚果
+Walnuts||核桃
+Pasta & Noodle Dishes||意大利面
+Cream of Tartar||塔塔粉
+Rigatoni||意大利通心粉
+Jalapenos||墨西哥辣椒
+Ziti||引用
+Flavored Milk||风味牛奶
+Gravies||肉汁
+Brown||棕色
+Tomatoes||番茄
+Sandwich Breads||三明治面包
+Table Salt||食盐
+Honey Mustard||蜂蜜芥末
+Fudge||软糖
+Soy Milk||豆奶
+Carrots||胡萝卜
+Water||水
+Applesauce & Fruit Cups||苹果酱
+Applesauce||苹果酱
+Snack Cakes||小吃蛋糕
+Ginger Snaps||姜糖
+Buffalo Wing||水牛城之翼
+Pineapple||菠萝
+Lard & Shortening||猪油
+Lard||猪油
+Jams, Jellies & Sweet Spreads||果酱、果冻
+Nut & Seed Butters||槽
+Egg||鸡蛋
+French||法语
+Peaches||桃子
+Peas & Beans||豌豆
+Green Beans||绿豆
+Rotini||罗蒂尼
+Pinto||平托
+Almond Milk||杏仁牛奶
+Rice Cakes, Chips & Crackers||年糕、薯片
+Maple Syrup||枫树糖浆
+Graham Crackers||格雷厄姆饼干
+Kidney Beans||芸豆
+Granola||格兰诺拉麦片
+Matzo||马佐
+Nutmeg||肉豆蔻
+Brown Mustard||棕色芥末
+Adobo Seasoning||阿多波调味料
+Microwave||微波炉
+Shortening||缩短
+Tortilla||玉米饼
+Pears||梨
+Wheat||小麦
+Oat Bran||燕麦麸皮
+Allspice||五香粉
+Poppy Seed||罂粟籽
+Bars||酒吧
+Fruit & Nut||水果
+Almond||杏仁
+Sunflower Seeds||葵花籽
+Sea Vegetables||海菜
+Caramel||焦糖色
+Baking Chocolates, Carob & Cocoa||烘焙巧克力，角豆树
+Chocolates||巧克力
+Dill Pickles||莳萝腌菜
+Pizza||比萨
+Fruit Cups||水果杯
+Pasta Salads||意大利面沙拉
+Mixed||混合型
+Green Chilis||绿色奇利斯
+Mushrooms||蘑菇
+Wagashi||和果子
+Powdered||粉末状
+Flavoring Syrup||调味糖浆
+Salt Substitutes||盐的替代品
+High Protein||高蛋白
+Cereal||谷物
+Sandwich||三明治
+Breadcrumbs||面包屑
+Seafood Seasoning||海鲜调料
+Brittle||脆性
+Bay Leaf||月桂叶
+Anise Seeds||八角茴香籽
+Chocolate-coated Chips & Pretzels||巧克力涂层薯片
+Toffee||太妃糖
+15 centimeters high||15 厘米高
+Vegetable Relishes||蔬菜酱
+Chorizo||辣肉酱
+Candied & Chocolate-coated Fruit||蜜饯
+Antipasto||开胃菜
+Stuffed Grape Leaves||酿葡萄叶
+Fortune||财富
+Coconut Water||椰子水
+Animal||动物
+Penne||钢笔
+Mozzarella||莫扎里拉奶酪
+Green||绿色
+Nut||螺母
+Cheese Blends||混合奶酪
+Blue Cheese||蓝奶酪
+Soy||大豆
+Sesame Seed||芝麻籽
+Kidney||肾脏
+Muesli||麦片
+Garbanzo||加苯诺
+Brownies||布朗尼蛋糕
+Eggs & Egg Substitutes||鸡蛋
+Egg Substitutes||鸡蛋替代品
+Buckwheat||荞麦
+Caraway Seed||葛缕子
+Roses||玫瑰
+Basmati||巴斯马蒂
+Orzo||奥尔佐
+Fleur de Sel||Fleur de Sel
+String & Snack||字符串
+Peppers||辣椒
+Bagel Chips||百吉饼薯片
+Flatbread||扁面包
+Pie Crusts||馅饼皮
+Nut Bars||坚果棒
+German Mustard||德国芥末
+Fusilli||Fusilli
+Jasmine||茉莉花
+Spreads||价差
+Stew Meat & Convenient Cuts||炖肉
+Artichoke Hearts||朝鲜蓟心
+Packaged Produce||包装农产品
+Cut & Packaged Fruits||切割
+Panko||潘科
+Smoked & Cured Fish||熏制
+Tortellini||意大利通心粉
+Arborio||Arborio
+Linguine||扁面条
+Tagliatelle||长面条
+Cooking Wine||烹饪葡萄酒
+Rice||大米
+Agave Nectar & Syrup||龙舌兰花蜜
+Pita||皮塔饼
+Prepared Foods||预制食品
+Dips, Salsas & Spreads||蘸酱, 莎莎酱
+Sumac||苏木
+Hemp Seeds||大麻籽
+Biscotti||饼干
+Pinto Beans||平托豆
+Sugar||糖
+Butter & Margarine||黄油
+Non-Dairy Butter Substitutes||非乳制品黄油替代品
+Dry Soup Mixes||干汤料
+Paprika||红辣椒
+Toast||烤面包
+Oyster||牡蛎
+Polenta Meal||玉米粉餐
+Celery Seed||芹菜籽
+Fresh Herbs||新鲜香草
+Cilantro||香菜
+Meats||肉类
+Berries||浆果
+Bananas & Plantains||香蕉
+Savory||咸味
+Candy Canes||糖果手杖
+Indian Seasoning||印度调味料
+Asparagus||芦笋
+Shirataki||白泷
+Salami||萨拉米
+Beer Mustard||啤酒芥末
+Pork||猪肉
+Ham||火腿
+Half & Half||一半
+Dairy Milk||牛奶
+Rice Milk||米奶
+Cilantro Flakes||香菜片
+Udon||乌冬面
+Turkey||土耳其
+Vegetarian Proteins||素食蛋白质
+Tofu||豆腐
+Garbanzo Beans||鹰嘴豆
+Carob||角豆树
+Deli-Sliced Meats||熟食肉片
+Brie||布里
+Feta||菲达
+Heavy Cream||浓奶油
+Spiced Meat||香料肉
+Chipotle||Chipotle
+Peas||豌豆
+Asafetida||Asafetida
+Monterey Jack||蒙特雷杰克
+Sausage & Bacon||香肠
+House Plants||家庭植物
+Apples||苹果
+Artichokes||朝鲜蓟
+Melons||瓜类
+Cauliflower||花椰菜
+Leafy Greens||绿叶菜
+Celery||西芹
+Whipping Cream||鲜奶油
+Gnocchi||团子
+Hummus||鹰嘴豆泥
+Meatless||无肉
+Yogurt||酸奶
+Traditional Yogurt||传统酸奶
+American||美国
+Breakfast Burritos||早餐卷饼
+Lilies||百合花
+Root Vegetables||根茎类蔬菜
+Cabbage||卷心菜
+Squash & Gourds||壁球
+Basil||罗勒
+Tropical & Exotic Fruit||热带地区
+Grapes||葡萄
+Nectarines||油桃
+Onions & Shallots||洋葱
+Avocados||鳄梨
+Steaks||牛排
+Coffee Creamers||咖啡奶精
+Ice Cream & Novelties||冰淇淋
+Ice Cream||冰淇淋
+Sandwiches, Bars & Novelties||三明治、酒吧
+Popsicles & Juice Bars||冰棒
+Sorbet & Sherbet||冰糕
+Non-Dairy Ice Cream & Novelties||非乳制品冰淇淋
+Buttermilk||酪乳
+Kids||儿童
+Pot Pies||锅饼
+Greek & Strained Yogurt||希腊文
+Yogurt Drinks||酸奶饮料
+Oranges||橙子
+Waffles||华夫饼
+Processed||已处理
+Parmesan||帕马森
+Bow-Tie||领结
+Ice Cream & Soft Serve Mixes||冰淇淋
+Ricotta||乳清干酪
+Cheese Curds||奶酪凝乳
+Kids & Baby||儿童
+Kefir||克菲尔
+Meringues||蛋白酥皮
+Chips||薯片
+Ghee||酥油
+Flatbreads||扁面包
+Worcestershire Sauce||喼汁
+Stocks||股票
+Colby||科尔比
+Bagels & Muffins||百吉饼
+Swiss||瑞士
+Pastries||糕点
+Broccoli||西兰花
+Cole Slaw Dressing||科尔沙拉酱
+Pizzelles||比萨饼
+Spinach & Greens||菠菜
+Raspberries||覆盆子
+Pancakes & French Toast||煎饼
+Mint||薄荷糖
+Split||分割
+Millet||小米
+Water Chestnuts||荸荠
+Fish Sticks||鱼条
+Meat||肉类
+Appetizers & Snacks||开胃菜
+Pretzels||椒盐脆饼
+Onions||洋葱
+Tomatillos||番茄
+Figs||无花果
+Packaged Salad Mixes||包装沙拉混合料
+Frozen Fish||冷冻鱼
+Brussels Sprouts||球芽甘蓝
+Dates||日期
+Ribs||肋骨
+Ground Beef & Patties||碎牛肉
+Tenderloins||里脊肉
+Chops||切肉
+Frozen Shellfish||冷冻贝类
+Whole Chickens||整鸡
+Bonito Flakes||鲣鱼片
+Kalamata||卡拉马塔
+Sprouts||新芽
+Cut & Packaged Vegetables||切割
+Greek||希腊文
+Pitted Olives||带核橄榄
+Almond Butter||杏仁黄油
+Coarse Salt||粗盐
+Guacamole||鳄梨酱
+Grits||糁
+Candy & Chocolate Bars||糖果
+-Milk Chocolate||-牛奶巧克力
+Wheat Berries||小麦浆果
+Oat Flour||燕麦粉
+Miso||味噌
+Chia Seeds||奇异籽
+Cashew Butter||腰果黄油
+Ground Chicken||土鸡
+Andouille||安杜尔香肠
+Cornichons||玉米脆饼
+Vegetarian||素食
+Fish & Seafood||鱼类
+Tempeh||豆豉
+Edamame||毛豆
+Muenster||明斯特
+Provolone||波萝伏洛干酪
+Seitan||西坦
+Strawberries||草莓
+Peppermint Leaf||薄荷叶
+Gouda||高达
+Whole Eggs||全蛋
+Burgers & Patties||公民
+Chocolate-coated Espresso Beans||裹巧克力的特浓咖啡豆
+Pectin||果胶
+English Mustard||英国芥末
+Ladyfingers||Ladyfingers
+Yogurt Starter Cultures||酸奶起始菌
+Alcoholic Beverages||酒精饮料
+Wine||葡萄酒
+Red||红色
+Sparkling||气泡
+Beer||啤酒
+Porter & Stout||波特
+Ale||麦酒
+Lager & Pilsner||仓库
+Roasts||烤肉
+Mushroom||蘑菇
+Tempura||天妇罗
+Gelato||冰淇淋
+Cayenne||卡宴
+Rock Salt||岩盐
+Mace||梅斯
+Whole Grain Mustard||全麦芥末
+Plums||李子
+Grapefruit||西柚
+Sesame Seeds||芝麻籽
+Summer||蜂鸣器
+Squash||壁球
+Sunflowers||向日葵
+Asiago||亚戈
+Wings||机翼
+Spirits||烈酒
+Whiskey & Scotch||威士忌
+Thighs||大腿
+Flax Seeds||亚麻籽
+Bamboo||竹子
+Cucumbers||黄瓜
+Eggplant||茄子
+Bamboo Shoots||竹笋
+Kosher Salt||犹太盐
+Orchids||兰花
+Whole Grain||全谷物
+Manchego||曼切戈
+Chvre||Chvre
+Pecorino||佩科里诺
+Farro||法罗
+Canned & Jarred Fish||罐装
+Havarti||哈瓦蒂
+Hemp Milk||大麻牛奶
+Pigeon||鸽子
+Organic Chocolate Bars||有机巧克力棒
+Palm Sugar||棕榈糖
+Fruit Bars||水果棒
+Breakfast||早餐
+Decorating Kits||装饰套件
+Pepperoni||意大利辣香肠
+Sage||圣人
+Mangos||芒果
+Lima Beans||利马豆
+Edible Printer Ink & Paper||可食用打印机墨水
+Bubble Tea Kits||泡沫红茶套装
+Egg Whites||蛋白
+Emmental||艾门塔尔
+Lentils||小扁豆
+Daisies||雏菊
+Blueberries||蓝莓
+Paneer||奶酪
+Bean Salad||豆沙拉
+Baker's Ammonia||贝克氨
+Gin||金酒
+Sangria||桑格利亚
+Seasonal||季节性
+Non-Alcoholic Wine||无酒精葡萄酒
+Vodka||伏特加
+Chinese Star Anise||八角
+Hot Sauce||辣酱
+95% Rayon/5% Spandex||95% 人造丝/5% 氨纶
+Brazil Nuts||巴西坚果
+Carnations||康乃馨
+Chrysanthemums||菊花
+Coconut Shortening||椰子起酥油
+Kielbasa||基尔巴萨
+Tulips||郁金香
+German||德国
+Candied & Chocolate-coated Bacon||蜜饯
+Dessert||甜点
+Dried Seafood||海鲜干货
+Ajowan||阿乔万
+Drumsticks||鼓槌
+Tenders||投标
+IPA & Pale Ale||IPA
+Breaded Mozzarella & Vegetables||裹面包屑的马苏里拉芝士
+Crab Cakes||蟹饼
+Okra||秋葵
+Soy & Nondairy||我是
+Flax Milk||亚麻牛奶
+Variety & Organ Meats||多样性
+Sausage||香肠
+Frozen Yogurt||冷冻酸奶
+Coconuts||椰子
+Strips||条带
+Light Cream||淡奶油色
+Mexican Cheese||墨西哥奶酪
+Bananas||香蕉
+Fennel||茴香
+Vegetable Dishes||蔬菜菜肴
+Sauerkraut||酸菜
+Limburger||林堡
+Vegetable Soups||蔬菜汤
+32 Ounces Liquid||32 盎司液体
+Liqueurs||利口酒
+Made in USA or Imported||美国制造或进口
+Lemons||柠檬
+Fruit Relishes||水果酱
+Food & Beverage Gifts||食品
+Snack Gifts||小吃礼品
+DISNEY'S FROZEN FILLED EASTER BASKET.||迪斯尼冰冻复活节篮。
+Pts||分
+Fish Pt||鱼塘
+Stir Fry Cuts||炒菜切块
+Camembert||卡门柏乳酪
+Candy & Chocolate Gifts||糖果
+-Kate Kearney||凯特-卡尼
+Hard Cider||硬苹果酒
+Cutlets||肉排
+Giblets||内脏
+Daffodils||水仙花
+Lemon Grass||柠檬草
+Malt Beverages||麦芽饮料
+98% cotton||98% 棉
+Ingredients: guangxi sugarcane; Shelf life: 12 months||成分：广西甘蔗；保质期：12 个月
+20 easy prefilled Easter eggs with 3 candy assortments including Brach's Jellybeans and Chewy Lemonheads||20 个简易预装复活节彩蛋，内含 3 种糖果，包括 Brach's Jellybeans 和 Chewy Lemonheads
+Sports fans will be thrilled with Easter eggs themed in baseball, football, basketball and soccer!||以棒球、橄榄球、篮球和足球为主题的复活节彩蛋会让体育迷们兴奋不已！
+Animal fans will be thrilled with Easter eggs themed with adorable chicks, bunnies, cows, and pigs!||以可爱的小鸡、兔子、奶牛和小猪为主题的复活节彩蛋会让动物迷们兴奋不已！
+Animal fans will be thrilled with Easter eggs themed with fun tigers, elephants, hippos, and monkeys!||以有趣的老虎、大象、河马和猴子为主题的复活节彩蛋会让动物迷们兴奋不已！
+Soft and Smooth Cotton/Polyester Blend - 60% Cotton, 40% Polyester||柔软光滑的棉/涤混纺布 - 60% 棉，40% 涤纶

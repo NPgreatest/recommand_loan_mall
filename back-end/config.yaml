@@ -1,0 +1,33 @@
+## 本地图片上传路径
+local:
+  path: static
+mysql:
+  path: 127.0.0.1
+  port: "3306"
+  config: charset=utf8mb4&parseTime=True&loc=Local
+  db-name: mall
+  username: root
+  password: root
+  max-idle-conns: 0
+  max-open-conns: 0
+  log-mode: ""
+  log-zap: false
+system:
+  addr: 8000
+  db-type: mysql
+  oss-type: local
+  use-multipoint: false
+  iplimit-count: 15000
+  iplimit-time: 3600
+zap:
+  level: info
+  format: console
+  prefix: '[newbee_mall]'
+  director: log
+  showLine: true
+  encode-level: LowercaseColorLevelEncoder
+  stacktrace-key: stacktrace
+  log-in-console: true
+keys:
+  open_api_base: https://api.kwwai.top/v1
+  open_api_key: sk-B0KbmtufXU180pSQ2282292cE4Fe487e875aB1440c28Ef83
