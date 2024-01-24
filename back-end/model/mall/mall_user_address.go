@@ -23,5 +23,5 @@ type MallUserAddress struct {
 
 // TableName MallUserAddress 表名
 func (MallUserAddress) TableName() string {
-	return "tb_newbee_mall_user_address"
+	return "mall_user_address"
 }

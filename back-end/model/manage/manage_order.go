@@ -21,5 +21,5 @@ type MallOrder struct {
 
 // TableName MallOrder 表名
 func (MallOrder) TableName() string {
-	return "tb_newbee_mall_order"
+	return "mall_order"
 }

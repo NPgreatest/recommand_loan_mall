@@ -128,6 +128,16 @@ const router = createRouter({
         index: 2
       }
     },
+    {
+      path: '/budget',
+      name: 'Budget',
+      component: () => import(/* webpackChunkName: "budget" */ '../views/Budget.vue')
+    },
+    {
+      path: '/finance',
+      name: 'Finance',
+      component: () => import(/* webpackChunkName: "finance" */ '../views/Finance.vue')
+    }
   ]
 })
 

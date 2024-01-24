@@ -28,5 +28,5 @@ type MallGoodsInfo struct {
 
 // TableName MallGoodsInfo 表名
 func (MallGoodsInfo) TableName() string {
-	return "tb_newbee_mall_goods_info"
+	return "mall_goods_info"
 }

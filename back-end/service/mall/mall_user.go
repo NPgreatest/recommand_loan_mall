@@ -66,6 +66,46 @@ func (m *MallUserService) GetUserDetail(token string) (err error, userDetail mal
 	return
 }
 
+func (m *MallUserService) SetUserFinance(token string, finance mallReq.UserSetFinance) (err error) {
+	var userToken mall.MallUserToken
+	err = global.GVA_DB.Where("token = ?", token).First(&userToken).Error
+	if err != nil {
+		return errors.New("不存在的用户")
+	}
+
+	var existingFinance mall.MallUserFinance
+	result := global.GVA_DB.Where("user_id = ?", userToken.UserId).First(&existingFinance)
+	if result.Error == nil {
+		existingFinance.MonthlyIncome = finance.MonthlyIncome
+		existingFinance.MonthlyExpenses = finance.MonthlyExpenses
+		existingFinance.CreditScore = finance.CreditScore
+		existingFinance.DebtStatus = finance.DebtStatus
+		err = global.GVA_DB.Save(&existingFinance).Error
+	} else if errors.Is(result.Error, gorm.ErrRecordNotFound) {
+		existingFinance = mall.MallUserFinance{
+			UserId:          int64(userToken.UserId),
+			MonthlyIncome:   finance.MonthlyIncome,
+			MonthlyExpenses: finance.MonthlyExpenses,
+			CreditScore:     finance.CreditScore,
+			DebtStatus:      finance.DebtStatus,
+		}
+		err = global.GVA_DB.Create(&existingFinance).Error
+	} else {
+		err = result.Error
+	}
+	return
+}
+
+func (m *MallUserService) GetUserFinance(token string) (err error, finance mall.MallUserFinance) {
+	var userToken mall.MallUserToken
+	err = global.GVA_DB.Where("token =?", token).First(&userToken).Error
+	if err != nil {
+		return errors.New("不存在的用户"), finance
+	}
+	err = global.GVA_DB.Where("user_id =?", userToken.UserId).First(&finance).Error
+	return
+}
+
 func (m *MallUserService) UserLogin(params mallReq.UserLoginParam) (err error, user mall.MallUser, userToken mall.MallUserToken) {
 	err = global.GVA_DB.Where("login_name=? AND password_md5=?", params.LoginName, params.PasswordMd5).First(&user).Error
 	if user != (mall.MallUser{}) {

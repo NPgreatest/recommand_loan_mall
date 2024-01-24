@@ -52,6 +52,28 @@ func (m *MallUserApi) GetUserInfo(c *gin.Context) {
 	}
 }
 
+func (m *MallUserApi) SetUserFinance(c *gin.Context) {
+	token := c.GetHeader("token")
+	var req mallReq.UserSetFinance
+	_ = c.ShouldBindJSON(&req)
+	if err := mallUserService.SetUserFinance(token, req); err != nil {
+		global.GVA_LOG.Error("设置预算失败", zap.Error(err))
+		response.FailWithMessage("设置预算失败", c)
+	} else {
+		response.OkWithMessage("设置成功", c)
+	}
+}
+
+func (m *MallUserApi) GetUserFinance(c *gin.Context) {
+	token := c.GetHeader("token")
+	if err, financeDetail := mallUserService.GetUserFinance(token); err != nil {
+		global.GVA_LOG.Error("未查询到记录", zap.Error(err))
+		response.FailWithMessage("未查询到记录", c)
+	} else {
+		response.OkWithData(financeDetail, c)
+	}
+}
+
 func (m *MallUserApi) UserLogin(c *gin.Context) {
 	var req mallReq.UserLoginParam
 	_ = c.ShouldBindJSON(&req)

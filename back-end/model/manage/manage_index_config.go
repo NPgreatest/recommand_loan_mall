@@ -23,5 +23,5 @@ type MallIndexConfig struct {
 
 // TableName MallIndexConfig 表名
 func (MallIndexConfig) TableName() string {
-	return "tb_newbee_mall_index_config"
+	return "mall_index_config"
 }

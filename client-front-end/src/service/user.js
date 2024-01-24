@@ -5,6 +5,14 @@ export function getUserInfo() {
   return axios.get('/user/info');
 }
 
+export function getUserFinance() {
+  return axios.get('/user/finance');
+}
+
+export function setUserFinance(params) {
+  return axios.post('/user/finance',params);
+}
+
 export function EditUserInfo(params) {
   return axios.put('/user/info', params);
 }

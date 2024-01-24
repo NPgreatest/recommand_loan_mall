@@ -19,5 +19,5 @@ type MallCarousel struct {
 
 // TableName MallCarousel 表名
 func (MallCarousel) TableName() string {
-	return "tb_newbee_mall_carousel"
+	return "mall_carousel"
 }

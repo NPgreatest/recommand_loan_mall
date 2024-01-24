@@ -11,5 +11,5 @@ type MallAdminUserToken struct {
 }
 
 func (MallAdminUserToken) TableName() string {
-	return "tb_newbee_mall_admin_user_token"
+	return "mall_admin_user_token"
 }

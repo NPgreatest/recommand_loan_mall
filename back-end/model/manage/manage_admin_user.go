@@ -10,5 +10,5 @@ type MallAdminUser struct {
 }
 
 func (MallAdminUser) TableName() string {
-	return "tb_newbee_mall_admin_user"
+	return "mall_admin_user"
 }
