@@ -12,6 +12,7 @@ func (m *MallQueryRouter) InitMallQueryRouter(Router *gin.RouterGroup) {
 	mallGoodsRouter := Router.Group("v1")
 	var mallQueryApi = v1.ApiGroupApp.MallApiGroup.MallQueryApi
 	{
-		mallGoodsRouter.POST("query", mallQueryApi.TextToItem) // 获取分类数据
+		mallGoodsRouter.POST("query", mallQueryApi.TextToItem)            // 获取分类数据
+		mallGoodsRouter.POST("gpt_query", mallQueryApi.AdvancedRecommend) // 获取分类数据
 	}
 }

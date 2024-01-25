@@ -66,14 +66,14 @@ func (m *MallOrderService) SaveOrder(token string, userAddress mall.MallUserAddr
 			}
 			//生成订单号
 			orderNo = utils.GenOrderNo()
-			priceTotal := 0
+			var priceTotal float64
 			//保存订单
 			var newBeeMallOrder manage.MallOrder
 			newBeeMallOrder.OrderNo = orderNo
 			newBeeMallOrder.UserId = userToken.UserId
 			//总价
 			for _, newBeeMallShoppingCartItemVO := range myShoppingCartItems {
-				priceTotal = priceTotal + newBeeMallShoppingCartItemVO.GoodsCount*newBeeMallShoppingCartItemVO.SellingPrice
+				priceTotal = priceTotal + float64(newBeeMallShoppingCartItemVO.GoodsCount)*newBeeMallShoppingCartItemVO.SellingPrice
 			}
 			if priceTotal < 1 {
 				return errors.New("订单价格异常！"), orderNo

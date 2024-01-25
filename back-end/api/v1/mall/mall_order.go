@@ -21,14 +21,14 @@ func (m *MallOrderApi) SaveOrder(c *gin.Context) {
 	}
 	token := c.GetHeader("token")
 
-	priceTotal := 0
+	var priceTotal float64
 	err, itemsForSave := mallShopCartService.GetCartItemsForSettle(token, saveOrderParam.CartItemIds)
 	if len(itemsForSave) < 1 {
 		response.FailWithMessage("无数据:"+err.Error(), c)
 	} else {
 		//总价
 		for _, newBeeMallShoppingCartItemVO := range itemsForSave {
-			priceTotal = priceTotal + newBeeMallShoppingCartItemVO.GoodsCount*newBeeMallShoppingCartItemVO.SellingPrice
+			priceTotal = priceTotal + float64(newBeeMallShoppingCartItemVO.GoodsCount)*newBeeMallShoppingCartItemVO.SellingPrice
 		}
 		if priceTotal < 1 {
 			response.FailWithMessage("价格异常", c)

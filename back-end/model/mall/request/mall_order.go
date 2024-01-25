@@ -18,3 +18,8 @@ type SaveOrderParam struct {
 type QueryParam struct {
 	QueryString string `json:"query_string"`
 }
+
+type RecommendQueryParam struct {
+	QueryString string  `json:"query_string"`
+	TotalBudget float32 `json:"total_budget"`
+}

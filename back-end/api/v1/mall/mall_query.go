@@ -6,6 +6,7 @@ import (
 	"main.go/global"
 	"main.go/model/common/response"
 	mallReq "main.go/model/mall/request"
+	mallRes "main.go/model/mall/response"
 )
 
 type MallQueryApi struct {
@@ -20,4 +21,17 @@ func (m *MallQueryApi) TextToItem(c *gin.Context) {
 	} else {
 		response.OkWithData(recommendItems, c)
 	}
+}
+
+func (m *MallQueryApi) AdvancedRecommend(c *gin.Context) {
+	var queryParam mallReq.RecommendQueryParam
+	_ = c.ShouldBindJSON(&queryParam)
+	var res []mallRes.RecommendResponse
+	var err error
+	if err, res = mallQueryService.FineTuneGetList(queryParam.QueryString); err != nil {
+		global.GVA_LOG.Error("从Fine-Tune模型获取推荐失败", zap.Error(err))
+		response.FailWithMessage("从Fine-Tune模型获取推荐失败:"+err.Error(), c)
+		return
+	}
+	response.OkWithData(res, c)
 }

@@ -129,6 +129,14 @@ const router = createRouter({
       }
     },
     {
+      path: '/ai-recommendation',
+      name: 'ai-recommendation',
+      component: () => import('@/views/AI-Recommend.vue'),
+      meta: {
+        index: 2
+      }
+    },
+    {
       path: '/budget',
       name: 'Budget',
       component: () => import(/* webpackChunkName: "budget" */ '../views/Budget.vue')

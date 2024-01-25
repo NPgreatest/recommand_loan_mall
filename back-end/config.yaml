@@ -31,3 +31,4 @@ zap:
 keys:
   open_api_base: https://api.kwwai.top/v1
   open_api_key: sk-B0KbmtufXU180pSQ2282292cE4Fe487e875aB1440c28Ef83
+  fine_tune_model: gpt-3.5-turbo

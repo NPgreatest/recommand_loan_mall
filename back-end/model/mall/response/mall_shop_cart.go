@@ -11,5 +11,5 @@ type CartItemResponse struct {
 
 	GoodsCoverImg string `json:"goodsCoverImg"`
 
-	SellingPrice int `json:"sellingPrice"`
+	SellingPrice float64 `json:"sellingPrice"`
 }
