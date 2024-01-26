@@ -3,7 +3,9 @@ package mall
 import (
 	"errors"
 	"github.com/jinzhu/copier"
+	"go.uber.org/zap"
 	"main.go/global"
+	"main.go/model/mall"
 	mallRes "main.go/model/mall/response"
 	"main.go/model/manage"
 	"main.go/utils"
@@ -24,6 +26,10 @@ func (m *MallGoodsInfoService) MallGoodsListBySearch(pageNumber int, goodsCatego
 		db.Where("goods_category_id= ?", goodsCategoryId)
 	}
 	err = db.Count(&total).Error
+	if err != nil {
+		global.GVA_LOG.Error("count total page err", zap.Error(err))
+		return err, nil, 0
+	}
 	switch orderBy {
 	case "new":
 		db.Order("goods_id desc")
@@ -64,5 +70,45 @@ func (m *MallGoodsInfoService) GetMallGoodsInfo(id int) (err error, res mallRes.
 	list = append(list, mallGoodsInfo.GoodsCarousel)
 	res.GoodsCarouselList = list
 
+	return
+}
+
+// GetMallGoodsInfo 获取评论信息
+func (m *MallGoodsInfoService) GetMallReviewInfo(id int, pageNumber int) (err error, mallReviewInfo []*mallRes.MallGoodsReviewResponse) {
+	var total int64
+	db := global.GVA_DB.Model(&mall.MallGoodsReview{})
+	db.Where("goods_id = ?", id)
+	err = db.Count(&total).Error
+	if err != nil {
+		global.GVA_LOG.Error("count total page err", zap.Error(err))
+		return err, nil
+	}
+	limit := 10
+	offset := 10 * (pageNumber - 1)
+	var reviews []mall.MallGoodsReview
+	err = db.Limit(limit).Offset(offset).Find(&reviews).Error
+	if err != nil {
+		global.GVA_LOG.Error("find review err", zap.Error(err))
+		return err, nil
+	}
+	copier.Copy(&mallReviewInfo, &reviews)
+	ids := make([]int64, 0)
+	for _, items := range reviews {
+		ids = append(ids, items.UserId)
+	}
+	var users []mall.MallUser
+	err = global.GVA_DB.Where("user_id IN ?", ids).Find(&users).Error
+	if err != nil {
+		global.GVA_LOG.Error("find review corresponding user err", zap.Error(err))
+		return err, nil
+	}
+	infoMap := make(map[int]mall.MallUser)
+	for _, items := range users {
+		infoMap[items.UserId] = items
+	}
+	for _, items := range mallReviewInfo {
+		items.Avatar = infoMap[items.UserId].Avatar
+		items.NickName = infoMap[items.UserId].NickName
+	}
 	return
 }

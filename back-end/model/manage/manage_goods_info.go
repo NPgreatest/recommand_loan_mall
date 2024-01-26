@@ -24,6 +24,7 @@ type MallGoodsInfo struct {
 	CreateTime         common.JSONTime `json:"createTime" form:"createTime" gorm:"column:create_time;comment:商品添加时间;type:datetime"`
 	UpdateUser         int             `json:"updateUser" form:"updateUser" gorm:"column:update_user;comment:修改者主键id;type:int"`
 	UpdateTime         common.JSONTime `json:"updateTime" form:"updateTime" gorm:"column:update_time;comment:商品修改时间;type:datetime"`
+	ASIN               string          `json:"asin" form:"asin" gorm:"column:asin;comment:asin;type:char(50)"`
 }
 
 // TableName MallGoodsInfo 表名

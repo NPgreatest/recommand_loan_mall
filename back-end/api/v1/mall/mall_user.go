@@ -7,6 +7,7 @@ import (
 	"main.go/model/common/response"
 	mallReq "main.go/model/mall/request"
 	"main.go/utils"
+	"strconv"
 )
 
 type MallUserApi struct {
@@ -34,17 +35,18 @@ func (m *MallUserApi) UserInfoUpdate(c *gin.Context) {
 		response.FailWithMessage("参数错误"+err.Error(), c)
 		return
 	}
-	token := c.GetHeader("token")
-	if err := mallUserService.UpdateUserInfo(token, req); err != nil {
+	userID, _ := utils.VerifyToken(c.GetHeader("Authorization"))
+	if err := mallUserService.UpdateUserInfo(userID, req); err != nil {
 		global.GVA_LOG.Error("更新用户信息失败", zap.Error(err))
 		response.FailWithMessage("更新用户信息失败"+err.Error(), c)
+		return
 	}
 	response.OkWithMessage("更新成功", c)
 }
 
 func (m *MallUserApi) GetUserInfo(c *gin.Context) {
-	token := c.GetHeader("token")
-	if err, userDetail := mallUserService.GetUserDetail(token); err != nil {
+	userID, _ := utils.VerifyToken(c.GetHeader("Authorization"))
+	if err, userDetail := mallUserService.GetUserDetail(userID); err != nil {
 		global.GVA_LOG.Error("未查询到记录", zap.Error(err))
 		response.FailWithMessage("未查询到记录", c)
 	} else {
@@ -53,10 +55,11 @@ func (m *MallUserApi) GetUserInfo(c *gin.Context) {
 }
 
 func (m *MallUserApi) SetUserFinance(c *gin.Context) {
-	token := c.GetHeader("token")
+	userID, _ := utils.VerifyToken(c.GetHeader("Authorization"))
 	var req mallReq.UserSetFinance
 	_ = c.ShouldBindJSON(&req)
-	if err := mallUserService.SetUserFinance(token, req); err != nil {
+	iuserID, _ := strconv.Atoi(userID)
+	if err := mallUserService.SetUserFinance(iuserID, req); err != nil {
 		global.GVA_LOG.Error("设置预算失败", zap.Error(err))
 		response.FailWithMessage("设置预算失败", c)
 	} else {
@@ -65,8 +68,9 @@ func (m *MallUserApi) SetUserFinance(c *gin.Context) {
 }
 
 func (m *MallUserApi) GetUserFinance(c *gin.Context) {
-	token := c.GetHeader("token")
-	if err, financeDetail := mallUserService.GetUserFinance(token); err != nil {
+	userID, _ := utils.VerifyToken(c.GetHeader("Authorization"))
+	iuserID, _ := strconv.Atoi(userID)
+	if err, financeDetail := mallUserService.GetUserFinance(iuserID); err != nil {
 		global.GVA_LOG.Error("未查询到记录", zap.Error(err))
 		response.FailWithMessage("未查询到记录", c)
 	} else {
@@ -77,19 +81,9 @@ func (m *MallUserApi) GetUserFinance(c *gin.Context) {
 func (m *MallUserApi) UserLogin(c *gin.Context) {
 	var req mallReq.UserLoginParam
 	_ = c.ShouldBindJSON(&req)
-	if err, _, adminToken := mallUserService.UserLogin(req); err != nil {
+	if err, token := mallUserService.UserLogin(req); err != nil {
 		response.FailWithMessage("登陆失败", c)
 	} else {
-		response.OkWithData(adminToken.Token, c)
+		response.OkWithData(token.Token, c)
 	}
-}
-
-func (m *MallUserApi) UserLogout(c *gin.Context) {
-	token := c.GetHeader("token")
-	if err := mallUserTokenService.DeleteMallUserToken(token); err != nil {
-		response.FailWithMessage("登出失败", c)
-	} else {
-		response.OkWithMessage("登出成功", c)
-	}
-
 }

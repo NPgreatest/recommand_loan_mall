@@ -4,7 +4,7 @@
     <van-skeleton title :avatar="true" :row="3" :loading="state.loading">
       <div class="user-info">
         <div class="info">
-          <img src="https://s.yezgea02.com/1604040746310/aaaddd.png"/>
+          <img :src="$filters.prefix(state.user.avatar)" alt="User Avatar"/>
           <div class="user-desc">
             <span>昵称：{{ state.user.nickName }}</span>
             <span>登录名：{{ state.user.loginName }}</span>
@@ -52,6 +52,8 @@ import navBar from '@/components/NavBar.vue'
 import sHeader from '@/components/SimpleHeader.vue'
 import { getUserInfo } from '@/service/user'
 import { useRouter } from 'vue-router'
+import axios from "axios";
+import * as filters from "@/common/js/utils";
 const router = useRouter()
 const state = reactive({
   user: {},
@@ -67,6 +69,10 @@ onMounted(async () => {
 const goBack = () => {
   router.go(-1)
 }
+
+// const getImageUrl = (avatar) => {
+//   return `  ${filters.prefix(item.goodsCoverImg)} ${axios.defaults.baseURL.slice(0,-6)}images/${avatar}`;
+// }
 
 const goTo = (r, query) => {
   router.push({ path: r, query: query || {} })

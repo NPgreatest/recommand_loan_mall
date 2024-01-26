@@ -6,6 +6,7 @@ type Server struct {
 	// gorm
 	Mysql Mysql `mapstructure:"mysql" json:"mysql" yaml:"mysql"`
 	// oss
-	Local Local `mapstructure:"local" json:"local" yaml:"local"`
-	Keys  Keys  `mapstructure:"keys" json:"keys" yaml:"keys"`
+	Postgres Postgres `mapstructure:"postgres" json:"postgres" yaml:"postgres"`
+	Local    Local    `mapstructure:"local" json:"local" yaml:"local"`
+	Keys     Keys     `mapstructure:"keys" json:"keys" yaml:"keys"`
 }

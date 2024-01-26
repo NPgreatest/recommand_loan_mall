@@ -11,7 +11,6 @@ import (
 	mallRes "main.go/model/mall/response"
 	"main.go/utils"
 	"strconv"
-	"strings"
 	"time"
 )
 
@@ -27,38 +26,40 @@ func (m *MallUserService) RegisterUser(req mallReq.RegisterUserParam) (err error
 	return global.GVA_DB.Create(&mall.MallUser{
 		LoginName:     req.LoginName,
 		PasswordMd5:   utils.MD5V([]byte(req.Password)),
-		IntroduceSign: "随新所欲，蜂富多彩",
+		IntroduceSign: "2024毕业设计",
+		NickName:      "请设置昵称",
 		CreateTime:    common.JSONTime{Time: time.Now()},
+		Avatar:        "51.jpg",
 	}).Error
 
 }
 
-func (m *MallUserService) UpdateUserInfo(token string, req mallReq.UpdateUserInfoParam) (err error) {
-	var userToken mall.MallUserToken
-	err = global.GVA_DB.Where("token =?", token).First(&userToken).Error
-	if err != nil {
-		return errors.New("不存在的用户")
-	}
+func (m *MallUserService) UpdateUserInfo(userID string, req mallReq.UpdateUserInfoParam) (err error) {
 	var userInfo mall.MallUser
-	err = global.GVA_DB.Where("user_id =?", userToken.UserId).First(&userInfo).Error
+	err = global.GVA_DB.Where("user_id =?", userID).First(&userInfo).Error
 	// 若密码为空字符，则表明用户不打算修改密码，使用原密码保存
 	if !(req.PasswordMd5 == "") {
 		userInfo.PasswordMd5 = utils.MD5V([]byte(req.PasswordMd5))
 	}
+	if req.Avatar != "" {
+		address, err := utils.WriteImages(req.Avatar)
+		if err != nil {
+			return err
+		}
+		userInfo.Avatar = address
+	}
 	userInfo.NickName = req.NickName
 	userInfo.IntroduceSign = req.IntroduceSign
-	err = global.GVA_DB.Where("user_id =?", userToken.UserId).UpdateColumns(&userInfo).Error
+	err = global.GVA_DB.Where("user_id =?", userID).UpdateColumns(&userInfo).Error
 	return
 }
 
-func (m *MallUserService) GetUserDetail(token string) (err error, userDetail mallRes.MallUserDetailResponse) {
-	var userToken mall.MallUserToken
-	err = global.GVA_DB.Where("token =?", token).First(&userToken).Error
+func (m *MallUserService) GetUserDetail(userID string) (err error, userDetail mallRes.MallUserDetailResponse) {
 	if err != nil {
 		return errors.New("不存在的用户"), userDetail
 	}
 	var userInfo mall.MallUser
-	err = global.GVA_DB.Where("user_id =?", userToken.UserId).First(&userInfo).Error
+	err = global.GVA_DB.Where("user_id =?", userID).First(&userInfo).Error
 	if err != nil {
 		return errors.New("用户信息获取失败"), userDetail
 	}
@@ -66,15 +67,13 @@ func (m *MallUserService) GetUserDetail(token string) (err error, userDetail mal
 	return
 }
 
-func (m *MallUserService) SetUserFinance(token string, finance mallReq.UserSetFinance) (err error) {
-	var userToken mall.MallUserToken
-	err = global.GVA_DB.Where("token = ?", token).First(&userToken).Error
+func (m *MallUserService) SetUserFinance(userID int, finance mallReq.UserSetFinance) (err error) {
 	if err != nil {
 		return errors.New("不存在的用户")
 	}
 
 	var existingFinance mall.MallUserFinance
-	result := global.GVA_DB.Where("user_id = ?", userToken.UserId).First(&existingFinance)
+	result := global.GVA_DB.Where("user_id = ?", userID).First(&existingFinance)
 	if result.Error == nil {
 		existingFinance.MonthlyIncome = finance.MonthlyIncome
 		existingFinance.MonthlyExpenses = finance.MonthlyExpenses
@@ -83,7 +82,7 @@ func (m *MallUserService) SetUserFinance(token string, finance mallReq.UserSetFi
 		err = global.GVA_DB.Save(&existingFinance).Error
 	} else if errors.Is(result.Error, gorm.ErrRecordNotFound) {
 		existingFinance = mall.MallUserFinance{
-			UserId:          int64(userToken.UserId),
+			UserId:          int64(userID),
 			MonthlyIncome:   finance.MonthlyIncome,
 			MonthlyExpenses: finance.MonthlyExpenses,
 			CreditScore:     finance.CreditScore,
@@ -96,50 +95,23 @@ func (m *MallUserService) SetUserFinance(token string, finance mallReq.UserSetFi
 	return
 }
 
-func (m *MallUserService) GetUserFinance(token string) (err error, finance mall.MallUserFinance) {
-	var userToken mall.MallUserToken
-	err = global.GVA_DB.Where("token =?", token).First(&userToken).Error
-	if err != nil {
-		return errors.New("不存在的用户"), finance
-	}
-	err = global.GVA_DB.Where("user_id =?", userToken.UserId).First(&finance).Error
+func (m *MallUserService) GetUserFinance(userID int) (err error, finance mall.MallUserFinance) {
+	err = global.GVA_DB.Where("user_id =?", userID).First(&finance).Error
 	return
 }
 
-func (m *MallUserService) UserLogin(params mallReq.UserLoginParam) (err error, user mall.MallUser, userToken mall.MallUserToken) {
+func (m *MallUserService) UserLogin(params mallReq.UserLoginParam) (err error, userToken mall.MallUserToken) {
+	var user mall.MallUser
 	err = global.GVA_DB.Where("login_name=? AND password_md5=?", params.LoginName, params.PasswordMd5).First(&user).Error
-	if user != (mall.MallUser{}) {
-		token := getNewToken(time.Now().UnixNano()/1e6, int(user.UserId))
-		global.GVA_DB.Where("user_id", user.UserId).First(&token)
-		nowDate := time.Now()
-		// 48小时过期
-		expireTime, _ := time.ParseDuration("48h")
-		expireDate := nowDate.Add(expireTime)
-		// 没有token新增，有token 则更新
-		if userToken == (mall.MallUserToken{}) {
-			userToken.UserId = user.UserId
-			userToken.Token = token
-			userToken.UpdateTime = nowDate
-			userToken.ExpireTime = expireDate
-			if err = global.GVA_DB.Save(&userToken).Error; err != nil {
-				return
-			}
-		} else {
-			userToken.Token = token
-			userToken.UpdateTime = nowDate
-			userToken.ExpireTime = expireDate
-			if err = global.GVA_DB.Save(&userToken).Error; err != nil {
-				return
-			}
+	if user != (mall.MallUser{}) && err == nil {
+		struserToken, err := utils.CreateToken(strconv.Itoa(user.UserId), time.Hour*24)
+		if err != nil {
+			return err, userToken
 		}
+		userToken.UserId = user.UserId
+		userToken.Token = struserToken
+		userToken.UpdateTime = time.Now()
+		userToken.ExpireTime = time.Now().Add(time.Hour * 24)
 	}
-	return err, user, userToken
-}
-
-func getNewToken(timeInt int64, userId int) (token string) {
-	var build strings.Builder
-	build.WriteString(strconv.FormatInt(timeInt, 10))
-	build.WriteString(strconv.Itoa(userId))
-	build.WriteString(utils.GenValidateCode(6))
-	return utils.MD5V([]byte(build.String()))
+	return err, userToken
 }

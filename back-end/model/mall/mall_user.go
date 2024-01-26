@@ -13,6 +13,7 @@ type MallUser struct {
 	IsDeleted     int             `json:"isDeleted" form:"isDeleted" gorm:"column:is_deleted;comment:注销标识字段(0-正常 1-已注销);type:tinyint"`
 	LockedFlag    int             `json:"lockedFlag" form:"lockedFlag" gorm:"column:locked_flag;comment:锁定标识字段(0-未锁定 1-已锁定);type:tinyint"`
 	CreateTime    common.JSONTime `json:"createTime" form:"createTime" gorm:"column:create_time;comment:注册时间;type:datetime"`
+	Avatar        string          `json:"avatar" form:"avatar" gorm:"column:avatar;comment:头像;type:varchar(100)"`
 }
 
 // TableName MallUser 表名

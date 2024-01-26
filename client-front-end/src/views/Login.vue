@@ -1,13 +1,3 @@
-<!--
- * 严肃声明：
- * 开源版本请务必保留此注释头信息，若删除我方将保留所有法律责任追究！
- * 本系统已申请软件著作权，受国家版权局知识产权以及国家计算机软件著作权保护！
- * 可正常分享和学习源码，不得用于违法犯罪活动，违者必究！
- * Copyright (c) 2020 陈尼克 all rights reserved.
- * 版权所有，侵权必究！
- *
--->
-
 <template>
   <div class="login">
     <s-header :name="type == 'login' ? '登录' : '注册'" :back="'/home'"></s-header>
@@ -121,6 +111,7 @@ const onSubmit = async (values) => {
       "passwordMd5": md5(values.password)
     })
     setLocal('token', data)
+    console.log(data)
     // 需要刷新页面，否则 axios.js 文件里的 token 不会被重置
     window.location.href = '/'
   } else {

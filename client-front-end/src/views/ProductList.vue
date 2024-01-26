@@ -1,12 +1,3 @@
-<!--
- * 严肃声明：
- * 开源版本请务必保留此注释头信息，若删除我方将保留所有法律责任追究！
- * 本系统已申请软件著作权，受国家版权局知识产权以及国家计算机软件著作权保护！
- * 可正常分享和学习源码，不得用于违法犯罪活动，违者必究！
- * Copyright (c) 2020 陈尼克 all rights reserved.
- * 版权所有，侵权必究！
- *
--->
 
 <template>
   <div class="product-list-wrap">
@@ -50,6 +41,8 @@
           </template>
           <img class="empty" v-else src="https://s.yezgea02.com/1604041313083/kesrtd.png" alt="搜索">
         </van-list>
+
+
       </van-pull-refresh>
     </div>
   </div>
@@ -82,7 +75,7 @@ const init = async () => {
     return
   }
   const { data, data: { list } } = await search({ pageNumber: state.page, goodsCategoryId: categoryId, keyword: state.keyword, orderBy: state.orderBy })
-  
+
   state.productList = state.productList.concat(list)
   state.totalPage = data.totalPage
   state.loading = false;
@@ -92,7 +85,20 @@ const init = async () => {
 const goBack = () => {
   router.go(-1)
 }
+const goToPreviousPage = () => {
+  if (state.page > 1) {
+    state.page--;
+    onRefresh();
+  }
+}
 
+const goToNextPage = () => {
+  // alert(state.totalPage)
+  if (state.page < state.totalPage) {
+    state.page++;
+    onRefresh();
+  }
+}
 const productDetail = (item) => {
   router.push({ path: `/product/${item.goodsId}` })
 }
@@ -190,7 +196,7 @@ const changeTab = ({ name }) => {
   .content {
     height: calc(~"(100vh - 70px)");
     overflow: hidden;
-    overflow-y: scroll; 
+    overflow-y: scroll;
     margin-top: 78px;
   }
   .product-list-refresh {

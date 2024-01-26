@@ -1,13 +1,3 @@
-<!--
- * 严肃声明：
- * 开源版本请务必保留此注释头信息，若删除我方将保留所有法律责任追究！
- * 本系统已申请软件著作权，受国家版权局知识产权以及国家计算机软件著作权保护！
- * 可正常分享和学习源码，不得用于违法犯罪活动，违者必究！
- * Copyright (c) 2020 陈尼克 all rights reserved.
- * 版权所有，侵权必究！
- *
--->
-
 <template>
   <div class="product-detail">
     <s-header :name="'商品详情'"></s-header>
@@ -31,12 +21,32 @@
       </div>
       <div class="product-intro">
         <ul>
-          <li>概述</li>
-          <li>参数</li>
-          <li>安装服务</li>
-          <li>常见问题</li>
+          <li>详细信息</li>
         </ul>
         <div class="product-content" v-html="state.detail.goodsDetailContent || ''"></div>
+        <ul>
+          <li>评论</li>
+        </ul>
+      </div>
+
+
+      <div class="product-reviews">
+        <ul>
+          <li v-for="(review, index) in state.reviews" :key="index">
+            <div class="review-user">
+              <img :src="$filters.prefix(review.avatar)" class="review-avatar" alt="User Avatar">
+              <div class="review-nickname">{{ review.nickName }}</div>
+            </div>
+
+
+            <div class="review-title">评论标题: {{ review.reviewTitle }}</div>
+            <div class="review-content">评论内容: {{ review.reviewContent }}</div>
+            <div class="review-star">
+              <span v-for="star in 5" :key="star" class="star" v-bind:class="{ filled: star <= review.reviewStar }"></span>
+            </div>
+            <div class="review-time">评论时间: {{ formatDate(review.reviewTime) }}</div>
+          </li>
+        </ul>
       </div>
     </div>
     <van-action-bar>
@@ -52,7 +62,7 @@
 import { reactive, onMounted, nextTick } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useCartStore } from '@/stores/cart'
-import { getDetail } from '@/service/good'
+import {getDetail, getReview} from '@/service/good'
 import { addCart } from '@/service/cart'
 import sHeader from '@/components/SimpleHeader.vue'
 import { showSuccessToast } from 'vant'
@@ -64,7 +74,8 @@ const cart = useCartStore()
 const state = reactive({
   detail: {
     goodsCarouselList: []
-  }
+  },
+  reviews: []
 })
 
 onMounted(async () => {
@@ -73,7 +84,19 @@ onMounted(async () => {
   data.goodsCarouselList = data.goodsCarouselList.map(i => prefix(i))
   state.detail = data
   cart.updateCart()
+  await fetchReviews()
 })
+
+const fetchReviews = async (pageNumber = 1) => {
+  const { id } = route.params
+  const { data } = await getReview(id, { pageNumber })
+  state.reviews = data || []
+}
+
+const formatDate = (timestamp) => {
+  const date = new Date(timestamp * 1000)
+  return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+}
 
 nextTick(() => {
   // 一些和DOM有关的东西
@@ -194,4 +217,68 @@ const goToCart = async () => {
       background: linear-gradient(to right, #0dc3c3, #098888)
     }
   }
+
+
+  .product-reviews ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .product-reviews li {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd; /* 每个评论之间的横线 */
+  }
+
+  .review-title, .review-content {
+    margin-top: 5px;
+  }
+
+  .review-star {
+    display: inline-block;
+    margin: 5px 0px;
+    left: 33% ;
+  }
+
+  .star {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    background-image: url('../assets/empty_star.png');
+    background-size: cover;
+  }
+
+  .star.filled {
+    background-image: url('../assets/full_star.png');
+  }
+
+  .review-time {
+    text-align: right;
+    font-size: 0.8em;
+    color: #777;
+    margin-top: 5px;
+  }
+  .review-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+  }
+  .review-user {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+  }
+
+  .review-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    margin-right: 10px; /* 在头像和昵称之间添加一些间距 */
+  }
+
+  .review-nickname {
+    font-size: 1.2em; /* 增大字体大小 */
+    color: black; /* 将字体颜色设置为纯黑色 */
+  }
+
 </style>

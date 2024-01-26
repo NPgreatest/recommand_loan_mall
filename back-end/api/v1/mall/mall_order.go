@@ -19,10 +19,10 @@ func (m *MallOrderApi) SaveOrder(c *gin.Context) {
 	if err := utils.Verify(saveOrderParam, utils.SaveOrderParamVerify); err != nil {
 		response.FailWithMessage(err.Error(), c)
 	}
-	token := c.GetHeader("token")
-
+	userID, _ := utils.VerifyToken(c.GetHeader("Authorization"))
+	iuserID, _ := strconv.Atoi(userID)
 	var priceTotal float64
-	err, itemsForSave := mallShopCartService.GetCartItemsForSettle(token, saveOrderParam.CartItemIds)
+	err, itemsForSave := mallShopCartService.GetCartItemsForSettle(iuserID, saveOrderParam.CartItemIds)
 	if len(itemsForSave) < 1 {
 		response.FailWithMessage("无数据:"+err.Error(), c)
 	} else {
@@ -33,8 +33,8 @@ func (m *MallOrderApi) SaveOrder(c *gin.Context) {
 		if priceTotal < 1 {
 			response.FailWithMessage("价格异常", c)
 		}
-		_, userAddress := mallUserAddressService.GetMallUserDefaultAddress(token)
-		if err, saveOrderResult := mallOrderService.SaveOrder(token, userAddress, itemsForSave); err != nil {
+		_, userAddress := mallUserAddressService.GetMallUserDefaultAddress(iuserID)
+		if err, saveOrderResult := mallOrderService.SaveOrder(iuserID, userAddress, itemsForSave); err != nil {
 			global.GVA_LOG.Error("生成订单失败", zap.Error(err))
 			response.FailWithMessage("生成订单失败:"+err.Error(), c)
 		} else {
@@ -55,10 +55,12 @@ func (m *MallOrderApi) PaySuccess(c *gin.Context) {
 
 func (m *MallOrderApi) FinishOrder(c *gin.Context) {
 	orderNo := c.Param("orderNo")
-	token := c.GetHeader("token")
-	if err := mallOrderService.FinishOrder(token, orderNo); err != nil {
+	userID, _ := utils.VerifyToken(c.GetHeader("Authorization"))
+	iuserID, _ := strconv.Atoi(userID)
+	if err := mallOrderService.FinishOrder(iuserID, orderNo); err != nil {
 		global.GVA_LOG.Error("订单签收失败", zap.Error(err))
 		response.FailWithMessage("订单签收失败:"+err.Error(), c)
+		return
 	}
 	response.OkWithMessage("订单签收成功", c)
 
@@ -66,33 +68,38 @@ func (m *MallOrderApi) FinishOrder(c *gin.Context) {
 
 func (m *MallOrderApi) CancelOrder(c *gin.Context) {
 	orderNo := c.Param("orderNo")
-	token := c.GetHeader("token")
-	if err := mallOrderService.CancelOrder(token, orderNo); err != nil {
+	userID, _ := utils.VerifyToken(c.GetHeader("Authorization"))
+	iuserID, _ := strconv.Atoi(userID)
+	if err := mallOrderService.CancelOrder(iuserID, orderNo); err != nil {
 		global.GVA_LOG.Error("订单签收失败", zap.Error(err))
 		response.FailWithMessage("订单签收失败:"+err.Error(), c)
+		return
 	}
 	response.OkWithMessage("订单签收成功", c)
 
 }
 func (m *MallOrderApi) OrderDetailPage(c *gin.Context) {
 	orderNo := c.Param("orderNo")
-	token := c.GetHeader("token")
-	if err, orderDetail := mallOrderService.GetOrderDetailByOrderNo(token, orderNo); err != nil {
+	userID, _ := utils.VerifyToken(c.GetHeader("Authorization"))
+	iuserID, _ := strconv.Atoi(userID)
+	if err, orderDetail := mallOrderService.GetOrderDetailByOrderNo(iuserID, orderNo); err != nil {
 		global.GVA_LOG.Error("查询订单详情接口", zap.Error(err))
 		response.FailWithMessage("查询订单详情接口:"+err.Error(), c)
+		return
 	} else {
 		response.OkWithData(orderDetail, c)
 	}
 }
 
 func (m *MallOrderApi) OrderList(c *gin.Context) {
-	token := c.GetHeader("token")
+	userID, _ := utils.VerifyToken(c.GetHeader("Authorization"))
+	iuserID, _ := strconv.Atoi(userID)
 	pageNumber, _ := strconv.Atoi(c.Query("pageNumber"))
 	status := c.Query("status")
 	if pageNumber <= 0 {
 		pageNumber = 1
 	}
-	if err, list, total := mallOrderService.MallOrderListBySearch(token, pageNumber, status); err != nil {
+	if err, list, total := mallOrderService.MallOrderListBySearch(iuserID, pageNumber, status); err != nil {
 		global.GVA_LOG.Error("查询失败!", zap.Error(err))
 		response.FailWithMessage("查询失败"+err.Error(), c)
 	} else if len(list) < 1 {

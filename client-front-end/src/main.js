@@ -9,6 +9,10 @@ import 'lib-flexible/flexible'
 import './assets/main.css'
 import './common/style/theme.css'
 import 'vant/es/toast/style'
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+
+
 const app = createApp(App)
 
 app.use(createPinia())
@@ -44,6 +48,9 @@ app.use(ActionBarButton)
   .use(Checkbox)
   .use(CheckboxGroup)
   .use(Skeleton)
+    .use(ElementPlus)
+
+
 
 // 全局过滤器
 app.config.globalProperties.$filters = {
@@ -51,10 +58,11 @@ app.config.globalProperties.$filters = {
     if (url && url.startsWith('http')) {
       return url
     } else {
-      url = `http://localhost:8000${url}`
+      url = `http://localhost:8000/images/${url}`
       return url
     }
   }
 }
+
 
 app.mount('#app')

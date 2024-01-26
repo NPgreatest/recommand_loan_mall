@@ -1,12 +1,3 @@
-<!--
- * 严肃声明：
- * 开源版本请务必保留此注释头信息，若删除我方将保留所有法律责任追究！
- * 本系统已申请软件著作权，受国家版权局知识产权以及国家计算机软件著作权保护！
- * 可正常分享和学习源码，不得用于违法犯罪活动，违者必究！
- * Copyright (c) 2020 陈尼克 all rights reserved.
- * 版权所有，侵权必究！
- *
--->
 
 <template>
   <div class="categray">
@@ -38,12 +29,12 @@
               <div class="swiper-wrapper">
                 <template v-for="(category, index) in state.categoryData">
                   <div class="swiper-slide" v-if="state.currentIndex == category.categoryId" :key="index">
-                    <!-- <img class="category-main-img" :src="category.mainImgUrl" v-if="category.mainImgUrl"/> -->
+                    <!-- <assets class="category-main-assets" :src="category.mainImgUrl" v-if="category.mainImgUrl"/> -->
                     <div class="category-list" v-for="(products, index) in category.secondLevelCategoryVOS" :key="index">
                       <p class="catogory-title">{{products.categoryName}}</p>
                       <div class="product-item" v-for="(product, index) in products.thirdLevelCategoryVOS" :key="index" @click="selectProduct(product)">
-                        <img src="//s.weituibao.com/1583591077131/%E5%88%86%E7%B1%BB.png" class="product-img"/>
-                        <p v-text="product.categoryName" class="product-title"></p>
+                        <img :src="`/assets/${product.categoryName}.jpg`" class="product-img" />
+                        <p v-text="`${product.categoryName}`" class="product-title"></p>
                       </div>
                     </div>
                   </div>
@@ -204,7 +195,7 @@ const selectProduct = (item) => {
               text-align: center;
               font-size: 15px;
               .product-img {
-                .wh(30px, 30px);
+                .wh(80px, 80px);
               }
             }
           }

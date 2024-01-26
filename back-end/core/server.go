@@ -15,7 +15,7 @@ type server interface {
 
 func RunWindowsServer() {
 	Router := initialize.Routers()
-
+	//Router.StaticFile("/images", "./images")
 	address := fmt.Sprintf(":%d", global.GVA_CONFIG.System.Addr)
 	s := initServer(address, Router)
 	// 保证文本顺序输出

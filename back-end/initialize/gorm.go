@@ -2,16 +2,17 @@ package initialize
 
 import (
 	"gorm.io/gorm"
-	"main.go/global"
 )
 
 // Gorm 初始化数据库并产生数据库全局变量
 // Author SliverHorn
-func Gorm() *gorm.DB {
-	switch global.GVA_CONFIG.System.DbType {
+func Gorm(target string) *gorm.DB {
+	switch target {
 	case "mysql":
 		return GormMysql()
+	case "postgres":
+		return GormPostgres()
 	default:
-		return GormMysql()
+		return nil
 	}
 }

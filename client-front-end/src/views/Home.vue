@@ -102,6 +102,7 @@ const state = reactive({
   aiModelCategoryImgUrl: 'https://s.yezgea02.com/1604041127880/%E8%B6%85%E5%B8%82%402x.png', // AI推荐的图片URL
   newGoodses: [],
   recommends: [],
+  carousels:[],
   categoryList: [
    {
       name: '服饰专区',

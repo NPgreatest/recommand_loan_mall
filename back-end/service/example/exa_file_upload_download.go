@@ -71,12 +71,6 @@ func (e *FileUploadAndDownloadService) GetFileRecordInfoList(info request.PageIn
 	return err, fileLists, total
 }
 
-//@author: [piexlmax](https://github.com/piexlmax)
-//@function: UploadFile
-//@description: 根据配置文件判断是文件上传到本地或者七牛云
-//@param: header *multipart.FileHeader, noSave string
-//@return: err error, file model.ExaFileUploadAndDownload
-
 func (e *FileUploadAndDownloadService) UploadFile(header *multipart.FileHeader, noSave string) (err error, file example.ExaFileUploadAndDownload) {
 	oss := upload.NewOss()
 	filePath, key, uploadErr := oss.UploadFile(header)

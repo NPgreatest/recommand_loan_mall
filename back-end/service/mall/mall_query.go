@@ -70,7 +70,7 @@ func ParseProductScores(input string) ([]ProductScore, error) {
 }
 
 func (m *MallQueryService) FineTuneGetList(text string) (err error, cartItems []mallRes.RecommendResponse) {
-	userid := 7
+	userid := 7000
 	var products []ProductScore
 	for i := 0; i < 3; i++ {
 		openAIRes, err := utils.CallOpenAI(text)

@@ -15,7 +15,7 @@ type MallUserAddress struct {
 	ProvinceName  string          `json:"provinceName" form:"provinceName" gorm:"column:province_name;comment:省;type:varchar(32);"`
 	CityName      string          `json:"cityName" form:"cityName" gorm:"column:city_name;comment:城;type:varchar(32);"`
 	RegionName    string          `json:"regionName" form:"regionName" gorm:"column:region_name;comment:区;type:varchar(32);"`
-	DetailAddress string          `json:"detailAddress" form:"detailAddress" gorm:"column:detail_address;comment:收件详细地址(街道/楼宇/单元);type:varchar(64);"`
+	DetailAddress string          `json:"detailAddress" form:"detailAddress" gorm:"column:detail_address;comment:收件详细地址(街道/楼宇/单元);type:varchar(512);"`
 	IsDeleted     int             `json:"isDeleted" form:"isDeleted" gorm:"column:is_deleted;comment:删除标识字段(0-未删除 1-已删除);type:tinyint"`
 	CreateTime    common.JSONTime `json:"createTime" form:"createTime" gorm:"column:create_time;comment:添加时间;type:datetime"`
 	UpdateTime    common.JSONTime `json:"updateTime" form:"updateTime" gorm:"column:update_time;comment:修改时间;type:datetime"`

@@ -4,11 +4,11 @@ import (
 	"github.com/gin-gonic/gin"
 	"main.go/model/common/response"
 	"main.go/service"
+	"main.go/utils"
 	"time"
 )
 
 var manageAdminUserTokenService = service.ServiceGroupApp.ManageServiceGroup.ManageAdminUserTokenService
-var mallUserTokenService = service.ServiceGroupApp.MallServiceGroup.MallUserTokenService
 
 func AdminJWTAuth() gin.HandlerFunc {
 	return func(c *gin.Context) {
@@ -40,24 +40,14 @@ func AdminJWTAuth() gin.HandlerFunc {
 
 func UserJWTAuth() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		token := c.Request.Header.Get("token")
+		token := c.Request.Header.Get("Authorization")
 		if token == "" {
 			response.UnLogin(nil, c)
 			c.Abort()
 			return
 		}
-		err, mallUserToken := mallUserTokenService.ExistUserToken(token)
-		if err != nil {
-			response.UnLogin(nil, c)
-			c.Abort()
-			return
-		}
-		if time.Now().After(mallUserToken.ExpireTime) {
-			response.FailWithDetailed(nil, "授权已过期", c)
-			err = mallUserTokenService.DeleteMallUserToken(token)
-			if err != nil {
-				return
-			}
+		if _, ok := utils.VerifyToken(token); !ok {
+			response.Fail(c)
 			c.Abort()
 			return
 		}

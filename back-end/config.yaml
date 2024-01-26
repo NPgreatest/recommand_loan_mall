@@ -1,6 +1,6 @@
 ## 本地图片上传路径
 local:
-  path: static
+  path: images
 mysql:
   path: 127.0.0.1
   port: "3306"
@@ -12,6 +12,15 @@ mysql:
   max-open-conns: 0
   log-mode: ""
   log-zap: false
+postgres:
+  host: localhost
+  port: 5432
+  db-name: vector_db
+  username: postgres
+  password: root
+  sslmode: disable
+  time-zone: Asia/Shanghai
+
 system:
   addr: 8000
   db-type: mysql

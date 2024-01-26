@@ -4,6 +4,7 @@ package request
 type RegisterUserParam struct {
 	LoginName string `json:"loginName"`
 	Password  string `json:"password"`
+	Avatar    string `json:"avatar"`
 }
 
 // 更新用户信息
@@ -11,6 +12,7 @@ type UpdateUserInfoParam struct {
 	NickName      string `json:"nickName"`
 	PasswordMd5   string `json:"passwordMd5"`
 	IntroduceSign string `json:"introduceSign"`
+	Avatar        string `json:"avatar"`
 }
 
 type UserLoginParam struct {
