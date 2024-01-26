@@ -199,20 +199,18 @@ const tips = () => {
   padding: 0 15px;
   .boxSizing();
   font-size: 15px;
-  color: #fff;
+  background: #aeefaa; /* 深灰色背景 */
+  color: #f9f9f9; /* 亮色字体 */
   z-index: 10000;
-  .nbmenu2 {
-    color: @primary;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 添加阴影效果 */
+
+  .nbmenu2, .login {
+    color: #f9f9f9; /* 亮色图标 */
   }
   &.active {
-    background: @primary;
-    .nbmenu2 {
-      color: #fff;
-    }
-    .login {
-      color: #fff;
-    }
+    background: #6c757d; /* 活跃状态更深的灰色 */
   }
+
 
   .header-search {
     display: flex;
@@ -226,7 +224,7 @@ const tips = () => {
     .app-name {
       padding: 0 10px;
       color: @primary;
-      font-size: 20px;
+      font-size: 15px;
       font-weight: bold;
       border-right: 1px solid #666;
     }

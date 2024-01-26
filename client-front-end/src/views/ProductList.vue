@@ -13,11 +13,11 @@
         </div>
         <span class="search-btn" @click="getSearch">搜索</span>
       </header>
-      <van-tabs type="card" color="#1baeae" @click-tab="changeTab" >
-        <van-tab title="推荐" name=""></van-tab>
-        <van-tab title="新品" name="new"></van-tab>
-        <van-tab title="价格" name="price"></van-tab>
-      </van-tabs>
+      <div class="tabs-container">
+        <div class="tab" v-for="(tab, index) in state.tabs" :key="index" @click="changeTab(index)">
+          {{ tab.title }}
+        </div>
+      </div>
     </div>
     <div class="content">
       <van-pull-refresh v-model="state.refreshing" @refresh="onRefresh" class="product-list-refresh">
@@ -39,7 +39,8 @@
               </div>
             </div>
           </template>
-          <img class="empty" v-else src="https://s.yezgea02.com/1604041313083/kesrtd.png" alt="搜索">
+          <div v-if="state.loading" class="loader"></div>
+<!--          <img class="empty" v-else src="https://s.yezgea02.com/1604041313083/kesrtd.png" alt="搜索">-->
         </van-list>
 
 
@@ -55,6 +56,13 @@ import { search } from '@/service/good'
 const route = useRoute()
 const router = useRouter()
 const state = reactive({
+  tabs: [
+    { title: "推荐", name: "" },
+    { title: "新品", name: "new" },
+    { title: "价格", name: "price" },
+    {title: "好评", name: ""}
+  ],
+  activeTabIndex: 0,
   keyword: route.query.keyword || '',
   searchBtn: false,
   seclectActive: false,
@@ -125,16 +133,63 @@ const onRefresh = () => {
   state.page = 1
   onLoad()
 }
-
-const changeTab = ({ name }) => {
-  console.log('name', name)
-  state.orderBy = name
+const changeTab = (index) => {
+  state.activeTabIndex = index
+  console.log('name', state.tabs[index])
+  state.orderBy = state.tabs[index].name
   onRefresh()
 }
+
+
+
 </script>
 
 <style lang="less" scoped>
   @import '../common/style/mixin';
+  .loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #1f38cb;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 2s linear infinite;
+    margin: 50px auto;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  .tabs-container {
+    display: flex;
+    justify-content: center; /* 居中对齐 */
+    background-color: #ffffff; /* 淡绿色背景 */
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 5px; /* 增加下边距以避免重叠 */
+  }
+
+  .tab {
+    padding: 12px 16px; /* 增加内边距 */
+    color: #000000;
+    font-size: 18px; /* 增加字体大小 */
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+    margin: 0 5px; /* 为标签之间添加一些间距 */
+  }
+
+  .tab:hover {
+    background-color: #a5e3a5; /* 鼠标悬停时更深的绿色 */
+    transform: scale(1.05); /* 缩放效果 */
+  }
+
+  .tab:nth-child(2) {
+    /* 为第二个标签添加不同的样式 */
+  }
+
   .product-list-content {
     position: fixed;
     left: 0;
@@ -181,23 +236,33 @@ const changeTab = ({ name }) => {
     .icon-More {
       font-size: 20px;
     }
-    .search-btn {
-      height: 28px;
-      margin: 8px 0;
-      line-height: 28px;
-      padding: 0 5px;
-      color: #fff;
-      background: @primary;
-      .borderRadius(5px);
-      margin-top: 10px;
-    }
+      .search-btn {
+        height: 32px; /* 增加按钮高度 */
+        margin: 8px 0;
+        line-height: 32px;
+        padding: 0 15px; /* 增加按钮内边距 */
+        color: #fff;
+        background: #1c671c; /* 浅绿色背景 */
+        .borderRadius(15px); /* 增加圆角 */
+        transition: background-color 0.3s, transform 0.1s; /* 添加颜色和变形过渡效果 */
+        cursor: pointer; /* 鼠标悬停时手型指针 */
+
+        &:hover {
+          background: #1b791b; /* 鼠标悬停时的背景色变化 */
+        }
+
+        &:active {
+          transform: scale(0.95); /* 点击时的缩放效果 */
+        }
+      }
+
   }
 }
   .content {
     height: calc(~"(100vh - 70px)");
     overflow: hidden;
     overflow-y: scroll;
-    margin-top: 78px;
+    margin-top: 128px;
   }
   .product-list-refresh {
     .product-item {
@@ -251,5 +316,6 @@ const changeTab = ({ name }) => {
     width: 150px;
     margin: 50px auto 20px;
   }
+
 }
 </style>

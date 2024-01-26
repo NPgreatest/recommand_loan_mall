@@ -7,7 +7,6 @@
 log
 go.sum
 .idea
-static-files
 
 # Test binary, built with `go test -c`
 *.test

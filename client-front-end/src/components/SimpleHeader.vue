@@ -47,24 +47,37 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  @import '../common/style/mixin';
-  .simple-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 10000;
-    .fj();
-    .wh(100%, 44px);
-    line-height: 44px;
-    padding: 0 10px;
-    .boxSizing();
-    color: #252525;
-    background: #fff;
+@import '../common/style/mixin';
+.simple-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  .fj();
+  .wh(100%, 50px); /* 增加高度 */
+  line-height: 50px;
+  padding: 0 15px;
+  .boxSizing();
+  color: #606060; /* 深灰色文字 */
+  background: #f0f0f0; /* 浅灰色背景 */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 添加阴影效果 */
+  transition: background-color 0.3s, color 0.3s; /* 平滑过渡动画 */
+
+  .simple-header-name {
+    font-size: 18px; /* 增加字体大小 */
+    font-weight: bold; /* 加粗字体 */
+    transition: font-size 0.3s; /* 字体大小变化动画 */
+  }
+
+  &:hover {
+    background: #e0e0e0; /* 悬停时背景颜色变化 */
+    color: #333; /* 悬停时文字颜色变化 */
     .simple-header-name {
-      font-size: 14px;
+      font-size: 20px; /* 悬停时字体大小变化 */
     }
   }
-  .block {
-    height: 44px;
-  }
+}
+.block {
+  height: 50px;
+}
 </style>

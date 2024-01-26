@@ -47,7 +47,7 @@ onMounted(() => {
   left: 0;
   bottom: 0;
   width: 100%;
-  padding: 10px 0;
+  padding: 0px 0;
   z-index: 1000;
   background: #ffffff; /* 深色背景 */
   color: #000000; /* 白色文字 */
