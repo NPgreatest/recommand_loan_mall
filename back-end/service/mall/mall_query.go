@@ -75,7 +75,7 @@ func (m *MallQueryService) FineTuneGetList(text string) (err error, cartItems []
 	for i := 0; i < 3; i++ {
 		openAIRes, err := utils.CallOpenAI(text)
 		if err == nil {
-			//fmt.Println(openAIRes)
+			fmt.Println(openAIRes)
 			products, err = ParseProductScores(openAIRes)
 			if err != nil {
 				continue
