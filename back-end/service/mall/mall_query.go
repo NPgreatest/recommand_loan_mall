@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"go.uber.org/zap"
 	"main.go/global"
-	"main.go/model/mall"
 	mallRes "main.go/model/mall/response"
 	"main.go/model/manage"
 	"main.go/utils"
@@ -70,7 +69,7 @@ func ParseProductScores(input string) ([]ProductScore, error) {
 }
 
 func (m *MallQueryService) FineTuneGetList(text string) (err error, cartItems []mallRes.RecommendResponse) {
-	userid := 7000
+	//userid := 7000
 	var products []ProductScore
 	for i := 0; i < 3; i++ {
 		openAIRes, err := utils.CallOpenAI(text)
@@ -96,8 +95,8 @@ func (m *MallQueryService) FineTuneGetList(text string) (err error, cartItems []
 		})
 	}
 	fmt.Println("Model final input=", ModelInput)
-	var userFinance mall.MallUserFinance
-	err = global.GVA_DB.Where("user_id = ? ", userid).First(&userFinance).Error
+	//var userFinance mall.MallUserFinance
+	//err = global.GVA_DB.Where("user_id = ? ", userid).First(&userFinance).Error
 	if err != nil {
 		return err, nil
 	}

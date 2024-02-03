@@ -1,12 +1,6 @@
 <template>
-
   <div class="search-container">
     <s-header :name="'大模型推荐'" :noback="false"></s-header>
-    <div class="search-box">
-      <input v-model="queryString" type="text" placeholder="请输入搜索内容" />
-      <button @click="startVoiceRecognition">语音</button>
-      <button @click="performSearch">完成</button>
-    </div>
     <div v-if="searchResult" class="result-container">
       <div class="result-item" v-for="item in searchResult" :key="item.goodsId">
         <img :src="item.goodsCoverImg" alt="商品图片">
@@ -17,31 +11,47 @@
         </div>
       </div>
     </div>
+
+    <div class="search-box">
+      <input v-model="queryString" type="text" placeholder="请输入搜索内容" />
+      <button @click="startVoiceRecognition">语音</button>
+      <button @click="performSearch">完成</button>
+    </div>
+    <div v-if="isLoading" class="loading-container">
+      <p>AI正在思考中...</p>
+      <PageLoader></PageLoader>
+    </div>
     <nav-bar></nav-bar>
   </div>
 </template>
+
 <script>
 import axios from 'axios';
 import sHeader from '@/components/SimpleHeader.vue'
+import PageLoader from '@/components/loading.vue'
 export default {
   data() {
     return {
       queryString: '',
-      searchResult: null
+      searchResult: null,
+      isLoading: false // 添加加载状态
     };
   },
+  components:{PageLoader},
   methods: {
-
     async performSearch() {
+      this.isLoading = true; // 开始加载
       try {
         const response = await axios.post('http://localhost:8000/api/v1/gpt_query', {
           query_string: this.queryString,
-          total_budget:"0"
+          total_budget: "0"
         });
         this.searchResult = response.data;
       } catch (error) {
         console.error('搜索失败:', error);
         // 这里可以添加错误处理逻辑
+      } finally {
+        this.isLoading = false; // 结束加载
       }
     },
     addToCart(item) {
@@ -55,6 +65,20 @@ export default {
 };
 </script>
 <style>
+.loading-container {
+  display: flex;
+  flex-direction: column; /* 子项垂直排列 */
+  justify-content: center; /* 子项在主轴方向（此处为垂直）居中对齐 */
+  align-items: center; /* 子项在交叉轴方向（此处为水平）居中对齐 */
+  height: 80vh; /* 容器高度设置为视窗的高度，确保它占满整个屏幕 */
+  text-align: center; /* 确保文本居中对齐 */
+}
+
+/* 可以添加更多样式来调整文字和PageLoader组件的间距等 */
+p {
+  margin-bottom: 70px; /* 在文字和PageLoader组件之间添加一些间距 */
+  font-size: large;
+}
 .search-container {
   padding: 20px;
 

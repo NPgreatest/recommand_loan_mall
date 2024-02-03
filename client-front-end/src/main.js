@@ -52,14 +52,15 @@ app.use(ActionBarButton)
 
 
 
-// 全局过滤器
+
 app.config.globalProperties.$filters = {
   prefix(url) {
     if (url && url.startsWith('http')) {
       return url
     } else {
-      url = `http://localhost:8000/images/${url}`
-      return url
+      const baseUrl = 'http://localhost:8000';
+      url = `${baseUrl}/images/${url}`;
+      return url;
     }
   }
 }

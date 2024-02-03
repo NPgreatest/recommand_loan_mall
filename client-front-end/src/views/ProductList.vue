@@ -1,4 +1,3 @@
-
 <template>
   <div class="product-list-wrap">
     <div class="product-list-content">

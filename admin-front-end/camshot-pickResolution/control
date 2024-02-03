@@ -1,0 +1,10 @@
+Package: com.meremention.camshotS
+Name: camshotS
+Depends:
+Version: 0.0.2
+Architecture: iphoneos-arm
+Description: Take photos with the front or back camera from the command line and force the resolution\nUsage:\ncamshot [-front|-back] [480|720|1080] [output]\nExample: camshot -front 720 image.jpg\nhttps://github.com/meremention/
+Maintainer: meremention
+Author: neoneggplant
+Section: System
+Tag: role::hacker
