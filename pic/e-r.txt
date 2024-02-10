@@ -1,0 +1,37 @@
+digraph G {
+    graph [charset="UTF-8"];
+    node [shape=record];
+
+    // 定义表
+    mall_goods_category [label="{商品分类|+ category_id: bigint|+ category_level: tinyint|+ parent_id: bigint|+ category_name: varchar|+ category_rank: int|+ is_deleted: tinyint|+ create_time: datetime|+ create_user: int|+ update_time: datetime|+ update_user: int}"];
+    mall_goods_info [label="{商品信息|+ goods_id: bigint|+ goods_name: varchar|+ goods_intro: varchar|+ goods_category_id: bigint|+ goods_cover_img: varchar|+ goods_carousel: varchar|+ goods_detail_content: text|+ original_price: decimal|+ selling_price: decimal|+ stock_num: int|+ tag: varchar|+ goods_sell_status: tinyint|+ create_user: int|+ create_time: datetime|+ update_user: int|+ update_time: datetime|+ ASIN: char}"];
+    mall_goods_review [label="{商品评价|+ goods_id: bigint|+ user_id: bigint|+ review_time: int|+ review_star: smallint|+ review_title: text|+ review_content: text}"];
+    mall_order [label="{订单|+ order_id: bigint|+ order_no: varchar|+ user_id: bigint|+ total_price: decimal|+ pay_status: tinyint|+ pay_type: tinyint|+ pay_time: datetime|+ order_status: tinyint|+ extra_info: varchar|+ is_deleted: tinyint|+ create_time: datetime|+ update_time: datetime}"];
+    mall_order_address [label="{订单地址|+ order_id: bigint|+ user_name: varchar|+ user_phone: varchar|+ province_name: varchar|+ city_name: varchar|+ region_name: varchar|+ detail_address: varchar}"];
+    mall_order_item [label="{订单项|+ order_item_id: bigint|+ order_id: bigint|+ goods_id: bigint|+ goods_name: varchar|+ goods_cover_img: varchar|+ selling_price: int|+ goods_count: int|+ create_time: datetime}"];
+    mall_shopping_cart_item [label="{购物车项|+ cart_item_id: bigint|+ user_id: bigint|+ goods_id: bigint|+ goods_count: int|+ is_deleted: tinyint|+ create_time: datetime|+ update_time: datetime}"];
+    mall_user [label="{用户|+ user_id: bigint|+ nick_name: varchar|+ login_name: varchar|+ password_md5: varchar|+ introduce_sign: varchar|+ is_deleted: tinyint|+ locked_flag: tinyint|+ create_time: datetime|+ avatar: varchar}"];
+
+    // 定义中间关系节点
+    node [shape=ellipse];
+    rel_goods_info_category [label="属于"];
+    rel_goods_review_goods [label="评价"];
+    rel_goods_review_user [label="由用户创建"];
+    rel_order_user [label="属于用户"];
+    rel_order_address_order [label="关联"];
+    rel_order_item_order [label="包含"];
+    rel_order_item_goods [label="对应"];
+    rel_shopping_cart_item_user [label="属于用户"];
+    rel_shopping_cart_item_goods [label="包含商品"];
+
+    // 定义关系
+    mall_goods_info -> rel_goods_info_category -> mall_goods_category;
+    mall_goods_review -> rel_goods_review_goods -> mall_goods_info;
+    mall_goods_review -> rel_goods_review_user -> mall_user;
+    mall_order -> rel_order_user -> mall_user;
+    mall_order_address -> rel_order_address_order -> mall_order;
+    mall_order_item -> rel_order_item_order -> mall_order;
+    mall_order_item -> rel_order_item_goods -> mall_goods_info;
+    mall_shopping_cart_item -> rel_shopping_cart_item_user -> mall_user;
+    mall_shopping_cart_item -> rel_shopping_cart_item_goods -> mall_goods_info;
+}
