@@ -67,32 +67,36 @@ func (m *MallUserService) GetUserDetail(userID string) (err error, userDetail ma
 	return
 }
 
-func (m *MallUserService) SetUserFinance(userID int, finance mallReq.UserSetFinance) (err error) {
-	if err != nil {
-		return errors.New("不存在的用户")
-	}
-
+func (m *MallUserService) SetUserFinance(userID int, finance *mallReq.UserSetFinance) error {
 	var existingFinance mall.MallUserFinance
 	result := global.GVA_DB.Where("user_id = ?", userID).First(&existingFinance)
 	if result.Error == nil {
-		existingFinance.MonthlyIncome = finance.MonthlyIncome
-		existingFinance.MonthlyExpenses = finance.MonthlyExpenses
-		existingFinance.CreditScore = finance.CreditScore
-		existingFinance.DebtStatus = finance.DebtStatus
-		err = global.GVA_DB.Save(&existingFinance).Error
+		existingFinance.UserID = int64(userID)
+		existingFinance.Gender = finance.Gender
+		existingFinance.Dependents = finance.Dependents
+		existingFinance.Married = finance.Married
+		existingFinance.Education = finance.Education
+		existingFinance.SelfEmployed = finance.SelfEmployed
+		existingFinance.ApplicantIncome = finance.ApplicantIncome
+		existingFinance.CoapplicantIncome = finance.CoapplicantIncome
+		existingFinance.City = finance.City
+		return global.GVA_DB.Where("user_id =?", userID).UpdateColumns(&existingFinance).Error
 	} else if errors.Is(result.Error, gorm.ErrRecordNotFound) {
 		existingFinance = mall.MallUserFinance{
-			UserId:          int64(userID),
-			MonthlyIncome:   finance.MonthlyIncome,
-			MonthlyExpenses: finance.MonthlyExpenses,
-			CreditScore:     finance.CreditScore,
-			DebtStatus:      finance.DebtStatus,
+			UserID:            int64(userID),
+			Gender:            finance.Gender,
+			Dependents:        finance.Dependents,
+			Married:           finance.Married,
+			Education:         finance.Education,
+			SelfEmployed:      finance.SelfEmployed,
+			ApplicantIncome:   finance.ApplicantIncome,
+			CoapplicantIncome: finance.CoapplicantIncome,
+			City:              finance.City,
 		}
-		err = global.GVA_DB.Create(&existingFinance).Error
+		return global.GVA_DB.Create(&existingFinance).Error
 	} else {
-		err = result.Error
+		return result.Error
 	}
-	return
 }
 
 func (m *MallUserService) GetUserFinance(userID int) (err error, finance mall.MallUserFinance) {

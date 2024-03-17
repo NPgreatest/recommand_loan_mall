@@ -59,7 +59,7 @@ func (m *MallUserApi) SetUserFinance(c *gin.Context) {
 	var req mallReq.UserSetFinance
 	_ = c.ShouldBindJSON(&req)
 	iuserID, _ := strconv.Atoi(userID)
-	if err := mallUserService.SetUserFinance(iuserID, req); err != nil {
+	if err := mallUserService.SetUserFinance(iuserID, &req); err != nil {
 		global.GVA_LOG.Error("设置预算失败", zap.Error(err))
 		response.FailWithMessage("设置预算失败", c)
 	} else {

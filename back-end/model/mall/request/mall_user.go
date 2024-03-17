@@ -21,8 +21,12 @@ type UserLoginParam struct {
 }
 
 type UserSetFinance struct {
-	MonthlyIncome   float64 `json:"monthlyIncome"`
-	MonthlyExpenses float64 `json:"monthlyExpenses"`
-	CreditScore     int     `json:"creditScore"`
-	DebtStatus      float64 `json:"debtStatus"`
+	Gender            bool    `json:"gender"`
+	Dependents        int16   `json:"dependents"`
+	Married           bool    `json:"married"`
+	Education         bool    `json:"education"`
+	SelfEmployed      bool    `json:"self_employed"`
+	ApplicantIncome   float64 `json:"applicant_income"`
+	CoapplicantIncome float64 `json:"coapplicant_income"`
+	City              bool    `json:"city"`
 }

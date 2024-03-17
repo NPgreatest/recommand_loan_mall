@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import { ActionBar, ActionBarIcon, ActionBarButton, Divider, Popup, Overlay, Loading, Dialog, ContactCard, Form, AddressEdit, AddressList, Field, CellGroup, Cell, SwipeCell, Icon, Stepper, Card, Checkbox, CheckboxGroup, Button, Swipe, SwipeItem, PullRefresh, List, Tab, Tabs, SubmitBar, Toast, Skeleton } from 'vant'
+import { NumberKeyboard,TimePicker , ActionBar, ActionBarIcon, ActionBarButton, Divider, Popup, Overlay, Loading, Dialog, ContactCard, Form, AddressEdit, AddressList, Field, CellGroup, Cell, SwipeCell, Icon, Stepper, Card, Checkbox, CheckboxGroup, Button, Swipe, SwipeItem, PullRefresh, List, Tab, Tabs, SubmitBar, Toast, Skeleton } from 'vant'
 
 import App from './App.vue'
 import router from './router'
@@ -49,10 +49,8 @@ app.use(ActionBarButton)
   .use(CheckboxGroup)
   .use(Skeleton)
     .use(ElementPlus)
-
-
-
-
+    .use(TimePicker)
+    .use(NumberKeyboard)
 app.config.globalProperties.$filters = {
   prefix(url) {
     if (url && url.startsWith('http')) {
