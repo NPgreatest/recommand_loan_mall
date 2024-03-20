@@ -4,12 +4,14 @@ import (
 	"errors"
 	"github.com/jinzhu/copier"
 	"gorm.io/gorm"
+	"log"
 	"main.go/global"
 	"main.go/model/common"
 	"main.go/model/mall"
 	mallReq "main.go/model/mall/request"
 	mallRes "main.go/model/mall/response"
 	"main.go/utils"
+	"os/exec"
 	"strconv"
 	"time"
 )
@@ -103,7 +105,28 @@ func (m *MallUserService) GetUserFinance(userID int) (err error, finance mall.Ma
 	err = global.GVA_DB.Where("user_id =?", userID).First(&finance).Error
 	return
 }
+func (m *MallUserService) GetUserLoan(userID int, req *mallReq.UserGetLoanReq) (err error, ok bool) {
+	var financeInfo *mall.MallUserFinance
+	err = global.GVA_DB.Where("user_id = ?", userID).First(&financeInfo).Error
+	if err != nil {
+		return err, false
+	}
+	args := preparePythonArguments(financeInfo, req)
+	cmd := exec.Command("python", append([]string{"./python-script/main.py"}, args...)...)
 
+	output, err := cmd.CombinedOutput()
+	if err != nil {
+		log.Printf("执行Python脚本时出错: %v", err)
+		return err, false
+	}
+	log.Printf("Python脚本输出: %s", output)
+	res := string(output)
+	if res[0] == '0' {
+		return nil, false
+	} else {
+		return nil, true
+	}
+}
 func (m *MallUserService) UserLogin(params mallReq.UserLoginParam) (err error, userToken mall.MallUserToken) {
 	var user mall.MallUser
 	err = global.GVA_DB.Where("login_name=? AND password_md5=?", params.LoginName, params.PasswordMd5).First(&user).Error
@@ -118,4 +141,23 @@ func (m *MallUserService) UserLogin(params mallReq.UserLoginParam) (err error, u
 		userToken.ExpireTime = time.Now().Add(time.Hour * 24)
 	}
 	return err, userToken
+}
+
+func preparePythonArguments(financeInfo *mall.MallUserFinance, req *mallReq.UserGetLoanReq) []string {
+	// 将Golang的数据结构转换为Python脚本需要的字符串参数形式
+	// 注意：这里的转换逻辑需要根据Python脚本的期望输入格式进行调整
+	args := []string{
+		utils.GenderToString(financeInfo.Gender),
+		utils.MarriedToString(financeInfo.Married),
+		strconv.Itoa(int(financeInfo.Dependents)),
+		utils.EducationToString(financeInfo.Education),
+		utils.SelfEmployedToString(financeInfo.SelfEmployed),
+		strconv.FormatFloat(financeInfo.ApplicantIncome, 'f', -1, 64),
+		strconv.FormatFloat(financeInfo.CoapplicantIncome, 'f', -1, 64),
+		strconv.Itoa(req.Amount),
+		strconv.Itoa(req.Term),
+		"1", //TODO 根据用户购买记录预测
+		utils.CityToString(financeInfo.City),
+	}
+	return args
 }

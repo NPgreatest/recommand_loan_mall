@@ -30,3 +30,8 @@ type UserSetFinance struct {
 	CoapplicantIncome float64 `json:"coapplicant_income"`
 	City              bool    `json:"city"`
 }
+
+type UserGetLoanReq struct {
+	Amount int `json:"amount"`
+	Term   int `json:"term"`
+}

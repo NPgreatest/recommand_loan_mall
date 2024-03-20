@@ -16,7 +16,6 @@ model = load('random_forest_model.joblib')
 
 
 def predict_loan_status(features):
-    # 使用标签编码器转换类别特征
     features_transformed = list(features)
     features_transformed[0] = label_encoders["Gender"].transform([features[0]])[0]
     features_transformed[1] = label_encoders["Married"].transform([features[1]])[0]
@@ -28,8 +27,6 @@ def predict_loan_status(features):
     # 将特征数组转换为numpy数组，并进行标准化
     features_array = np.array(features_transformed, dtype=object).reshape(1, -1)
     features_standard = scaler.transform(features_array.astype(float))
-
-    # 进行预测
     prediction = model.predict(features_standard)
     return prediction
 
@@ -38,7 +35,7 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         features = sys.argv[1:]
     else:
-        features = ["Male", "Yes", "0", "Graduate", "No", 1000, 0, 100, 360, 1, "Urban"]
+        features = ["Male", "Yes", "0", "Graduate", "No", 1000, 0, 10000, 360, 1, "Urban"]
 
     prediction = predict_loan_status(features)
     # 假设标签0和1分别代表贷款不批准和批准

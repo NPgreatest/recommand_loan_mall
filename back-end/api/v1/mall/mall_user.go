@@ -78,6 +78,19 @@ func (m *MallUserApi) GetUserFinance(c *gin.Context) {
 	}
 }
 
+func (m *MallUserApi) GetUserLoan(c *gin.Context) {
+	userID, _ := utils.VerifyToken(c.GetHeader("Authorization"))
+	iuserID, _ := strconv.Atoi(userID)
+	var req mallReq.UserGetLoanReq
+	_ = c.ShouldBindJSON(&req)
+	if err, financeDetail := mallUserService.GetUserLoan(iuserID, &req); err != nil {
+		global.GVA_LOG.Error("未查询到记录", zap.Error(err))
+		response.FailWithMessage("未查询到记录", c)
+	} else {
+		response.OkWithData(financeDetail, c)
+	}
+}
+
 func (m *MallUserApi) UserLogin(c *gin.Context) {
 	var req mallReq.UserLoginParam
 	_ = c.ShouldBindJSON(&req)

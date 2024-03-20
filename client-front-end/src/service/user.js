@@ -9,6 +9,11 @@ export function getUserFinance() {
   return axios.get('/user/finance');
 }
 
+export function tryLoan(params) {
+  return axios.post('/user/try_loan', params);
+}
+
+
 export function setUserFinance(params) {
   return axios.post('/user/finance',params);
 }
