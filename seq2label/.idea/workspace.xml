@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0c54bf9-934a-4c05-9d64-cdb02248f595" name="变更" comment="变更">
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../开题报告.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../开题报告.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -12,6 +11,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2cZdBhAU0xT0avBS09zeHZmKOv0" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -25,7 +27,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/Python-Project/recsys_justification-master"
+    "last_opened_file_path": "D:/Python-Project/pdf_2"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
@@ -37,6 +39,9 @@
       <option name="presentableId" value="Default" />
       <updated>1708322900783</updated>
       <workItem from="1708322901931" duration="27000" />
+      <workItem from="1710983340945" duration="1517000" />
+      <workItem from="1711086613768" duration="8000" />
+      <workItem from="1711105663285" duration="19000" />
     </task>
     <servers />
   </component>

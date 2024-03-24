@@ -19,6 +19,8 @@ func (m *MallUserRouter) InitMallUserRouter(Router *gin.RouterGroup) {
 		mallUserRouter.POST("/user/finance", mallUserApi.SetUserFinance)
 		mallUserRouter.GET("/user/finance", mallUserApi.GetUserFinance)
 		mallUserRouter.POST("/user/try_loan", mallUserApi.GetUserLoan)
+		mallUserRouter.POST("/user/loan", mallUserApi.DoLoan)
+		mallUserRouter.POST("/user/payloan", mallUserApi.PayLoan)
 	}
 	{
 		userRouter.POST("/user/register", mallUserApi.UserRegister) //用户注册

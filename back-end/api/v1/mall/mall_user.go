@@ -91,6 +91,31 @@ func (m *MallUserApi) GetUserLoan(c *gin.Context) {
 	}
 }
 
+func (m *MallUserApi) DoLoan(c *gin.Context) {
+	userID, _ := utils.VerifyToken(c.GetHeader("Authorization"))
+	iuserID, _ := strconv.Atoi(userID)
+	var req mallReq.UserGetLoanReq
+	_ = c.ShouldBindJSON(&req)
+	if err := mallUserService.DoLoan(iuserID, &req); err != nil {
+		global.GVA_LOG.Error("目前贷款未还清", zap.Error(err))
+		response.FailWithMessage("目前贷款未还清", c)
+	} else {
+		response.Ok(c)
+	}
+}
+
+func (m *MallUserApi) PayLoan(c *gin.Context) {
+	userID, _ := utils.VerifyToken(c.GetHeader("Authorization"))
+	iuserID, _ := strconv.Atoi(userID)
+	amount, _ := strconv.Atoi(c.Query("amount"))
+	if err := mallUserService.PayLoan(iuserID, amount); err != nil {
+		global.GVA_LOG.Error("未查询到记录", zap.Error(err))
+		response.FailWithMessage("未查询到记录", c)
+	} else {
+		response.Ok(c)
+	}
+}
+
 func (m *MallUserApi) UserLogin(c *gin.Context) {
 	var req mallReq.UserLoginParam
 	_ = c.ShouldBindJSON(&req)

@@ -1,0 +1,64 @@
+
+
+transformer：
+[1]	Vaswani A, Shazeer N, Parmar N, et al. Attention is all you need[J]. Advances in neural information processing systems, 2017, 30.
+
+GPT：
+Radford A, Narasimhan K, Salimans T, et al. Improving language understanding by generative pre-training[J]. 2018.
+
+Bert：
+Jacob Devlin，Chang Ming-wei，Kenton Lee，et al． BERT: pre-training of deep bidirectional transformersfor language understanding.[C]Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies，2019: 4171-4186．
+
+
+大模型消耗能源
+Strubell E, Ganesh A, McCallum A. Energy and policy considerations for deep learning in NLP[J]. arXiv preprint arXiv:1906.02243, 2019.
+
+
+
+
+GRU发明
+Cho K ,Merrienboer V B ,Gülçehre Ç , et al.Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation.[J].CoRR,2014,abs/1406.1078
+GRU在NLP中的应用
+Sutskever I, Vinyals O, Le Q V. Sequence to sequence learning with neural networks[J]. Advances in neural information processing systems, 2014, 27.
+
+词向量
+[1]杨泉.嵌入式词向量的实现原理研究[J].计算机与数字工程,2023,51(11):2602-2607+2614.
+
+
+
+词嵌入：
+Mikolov T, Sutskever I, Chen K, et al. Distributed representations of words and phrases and their compositionality[J]. Advances in neural information processing systems, 2013, 26.
+GLove：
+发明
+Pennington J, Socher R, Manning C D. Glove: Global vectors for word representation[C]//Proceedings of the 2014 conference on empirical methods in natural language processing (EMNLP). 2014: 1532-1543.
+应用
+Moschitti A, Pang B, Daelemans W. Proceedings of the 2014 Conference on Empirical Methods in Natural Language Processing (EMNLP)[C]//Proceedings of the 2014 Conference on Empirical Methods in Natural Language Processing (EMNLP). 2014.
+Fast text：
+Joulin A, Grave E, Bojanowski P, et al. Bag of tricks for efficient text classification[J]. arXiv preprint arXiv:1607.01759, 2016.
+
+
+
+
+
+
+
+
+
+
+随机森林发明：
+Breiman, L. (2001). Random Forests. Machine Learning, 45(1), 5-32.
+处理不平衡数据：
+Chen, X., Liaw, A., & Breiman, L. (2004). Using Random Forest to Learn Imbalanced Data. University of California, Berkeley.
+
+
+K-means发明的论文：
+MacQueen J. Some methods for classification and analysis of multivariate observations[C]//Proceedings of the fifth Berkeley symposium on mathematical statistics and probability. 1967, 1(14): 281-297.
+K-means在文本聚类中的应用：
+Zhang T, Ramakrishnan R, Livny M. BIRCH: an efficient data clustering method for very large databases[J]. ACM sigmod record, 1996, 25(2): 103-114.
+层次聚类：
+Ester M, Kriegel H P, Sander J, et al. A density-based algorithm for discovering clusters in large spatial databases with noise[C]//kdd. 1996, 96(34): 226-231.
+
+
+
+
+

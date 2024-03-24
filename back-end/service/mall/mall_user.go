@@ -73,16 +73,18 @@ func (m *MallUserService) SetUserFinance(userID int, finance *mallReq.UserSetFin
 	var existingFinance mall.MallUserFinance
 	result := global.GVA_DB.Where("user_id = ?", userID).First(&existingFinance)
 	if result.Error == nil {
-		existingFinance.UserID = int64(userID)
-		existingFinance.Gender = finance.Gender
-		existingFinance.Dependents = finance.Dependents
-		existingFinance.Married = finance.Married
-		existingFinance.Education = finance.Education
-		existingFinance.SelfEmployed = finance.SelfEmployed
-		existingFinance.ApplicantIncome = finance.ApplicantIncome
-		existingFinance.CoapplicantIncome = finance.CoapplicantIncome
-		existingFinance.City = finance.City
-		return global.GVA_DB.Where("user_id =?", userID).UpdateColumns(&existingFinance).Error
+		updateMap := map[string]interface{}{
+			"user_id":            int64(userID), // 通常不需要更新主键
+			"gender":             finance.Gender,
+			"dependents":         finance.Dependents,
+			"married":            finance.Married,
+			"education":          finance.Education,
+			"self_employed":      finance.SelfEmployed,
+			"applicant_income":   finance.ApplicantIncome,
+			"coapplicant_income": finance.CoapplicantIncome,
+			"city":               finance.City,
+		}
+		return global.GVA_DB.Model(&existingFinance).Where("user_id =?", userID).Updates(updateMap).Error
 	} else if errors.Is(result.Error, gorm.ErrRecordNotFound) {
 		existingFinance = mall.MallUserFinance{
 			UserID:            int64(userID),
@@ -127,6 +129,57 @@ func (m *MallUserService) GetUserLoan(userID int, req *mallReq.UserGetLoanReq) (
 		return nil, true
 	}
 }
+
+func (m *MallUserService) DoLoan(userID int, req *mallReq.UserGetLoanReq) (err error) {
+	var financeInfo *mall.MallUserFinance
+	err = global.GVA_DB.Where("user_id = ?", userID).First(&financeInfo).Error
+	if err != nil {
+		return
+	}
+	if financeInfo.Debt > 0 {
+		return errors.New("目前贷款未还清")
+	}
+	financeInfo.Debt = req.Amount
+	financeInfo.Amount += req.Amount
+	financeInfo.Term = req.Term
+	return global.GVA_DB.Where("user_id =?", userID).UpdateColumns(&financeInfo).Error
+}
+
+func (m *MallUserService) PayLoan(userID int, amount int) (err error) {
+	var financeInfo *mall.MallUserFinance
+	err = global.GVA_DB.Where("user_id = ?", userID).First(&financeInfo).Error
+	if err != nil {
+		return
+	}
+	if financeInfo.Debt > 0 {
+		if financeInfo.Debt <= amount {
+			financeInfo.Amount += amount - financeInfo.Debt
+			financeInfo.Debt = 0
+			financeInfo.Term = 0
+		} else {
+			financeInfo.Debt -= amount
+		}
+	} else {
+		financeInfo.Amount += amount
+		financeInfo.Term = 0
+	}
+	updateMap := map[string]interface{}{
+		"user_id":            int64(userID), // 通常不需要更新主键
+		"gender":             financeInfo.Gender,
+		"dependents":         financeInfo.Dependents,
+		"married":            financeInfo.Married,
+		"education":          financeInfo.Education,
+		"self_employed":      financeInfo.SelfEmployed,
+		"applicant_income":   financeInfo.ApplicantIncome,
+		"coapplicant_income": financeInfo.CoapplicantIncome,
+		"city":               financeInfo.City,
+		"amount":             financeInfo.Amount,
+		"term":               financeInfo.Term,
+		"debt":               financeInfo.Debt,
+	}
+	return global.GVA_DB.Model(&financeInfo).Where("user_id =?", userID).Updates(updateMap).Error
+}
+
 func (m *MallUserService) UserLogin(params mallReq.UserLoginParam) (err error, userToken mall.MallUserToken) {
 	var user mall.MallUser
 	err = global.GVA_DB.Where("login_name=? AND password_md5=?", params.LoginName, params.PasswordMd5).First(&user).Error
